@@ -18,8 +18,7 @@ class Front_Controller extends CI_Controller {
 		parent::__construct();
 		$this->location_id = !empty(get_session_var('user_location')) ? get_session_var('user_location')['id'] : 0;
 		$this->load->model(array('employee_model','user_model','available_location_model','location_model'));
-		
-		if(get_session_var('logged_in')) {
+				if(get_session_var('logged_in')) {
 			$this->USER_DETAILS = get_session_var('employeed_logged_in');
 			// prx($this->USER_DETAILS);
 			$this->userId = !empty(get_session_var('user_id')) ? get_session_var('user_id') : NULL;
