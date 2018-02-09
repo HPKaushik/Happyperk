@@ -1,0 +1,75 @@
+@media screen and (max-width: 768px){
+	.hp-logo-container{
+		width: 155px;
+		margin: 0 0px 0 -18px;
+	}
+	.plrt15-50 {
+		padding: 15px 15px !important;
+	}
+
+	.p10 {
+		margin: 10px 0px;
+	}
+	/*.hp_grid {
+		-moz-column-count: 1;
+		-webkit-column-count: 1;
+		column-count: 1;
+	}*/
+	.coupon-title-wrapper
+	{
+		max-height: 1.5em;
+	}
+	.coupon-price-wrapper {
+
+		padding-left: 10px;
+		top: -18px;
+		text-align : left;
+	}
+	.coupon-container .coupon-title {
+		font-size: 13px;	
+	}
+	.coupon-details-btm {
+		min-height: 100px;
+    	height: 56px;
+	}
+	.account-links li i {
+		margin-left: -13px;
+    	margin-top: 10px;
+	}
+	.account-links li p {
+		width: 85%;
+		line-height: 20px !important;
+	}
+	 .sidebar .nav .account-links li:hover>a {
+		background: transparent !important;
+		text-decoration: none;
+	}
+	.content.height100.p0 .col-lg-8.col-md-8.col-sm-6.height100.p0  {
+		display: none;
+	}
+	.alignVMiddle.top-pad {
+   		padding-top: 26vh;
+ 	}
+ 	.nav-pills-purple.border-bottom-color li {
+    /* border-bottom: 3px solid #329fd6; */
+    /* padding: 7px; */
+    	margin: 20px; 
+	}
+	.tab-pane .nav-pills-purple.border-bottom-color li a
+	{
+		    padding: 10px 10px;
+	}
+	.tab-pane .nav-pills-purple.border-bottom-color li {
+		margin: 0px !important;
+	}
+	/*.main-container {
+		height: auto !important;
+	}*/
+}
+@media screen and (max-width: 412px){
+	.modal-open .modal {
+		    max-width: 400px;
+    	display: none;
+    	position: absolute;
+	}
+}

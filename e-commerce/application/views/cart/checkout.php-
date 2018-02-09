@@ -1,0 +1,33 @@
+	<div class="container">	
+	<div class="col-sm-6 fix-height-wrap">
+		 <?php echo form_open('placeorder', array( 'id'=>'updateForm', 'method'=>'post'));?>
+			<div class="form-group">
+				<label class="col-md-4 control-label" for="">Email: <?php echo $emp_details['email'];?>	</label>  
+			</div>
+			<div class="form-group">
+				<label class="col-md-4 control-label" for="">Mobile: <?php echo $emp_details['phone'];?></label>  
+			</div>
+		</form> 
+	</div> 
+	<div class="col-sm-6 fix-height-wrap">
+		<h4 class="text-justify">REVIEW YOUR SHOPPING CART</h4>
+		<?php $i = 1; ?>
+			<?php foreach ($this->cart->contents() as $items): ?>
+		<p>Item: <?php echo $items['name']; ?> <strong>*</strong> <?php echo $items['qty'];?></p>
+		<p>Price: <?php echo $this->cart->format_number($items['price']); ?></p>
+		<p>subtotal: <?php echo $this->cart->format_number($items['subtotal']); ?></p>
+		<p>cashback: <?php if(isset($items['cashback_amount']) && !empty($items['cashback_amount'])){ echo $this->cart->format_number($items['cashback_amount'] * $items['qty']); }?></p>
+		<p>total: <?php echo $this->cart->total(); ?></p>
+		<hr/>
+		<p><?php if($this->mybalance > $this->cart->total()){ 
+					echo  'your Wallet: '.number_format($this->mybalance, 0).' - '.number_format($this->cart->total(), 0).' = '.number_format($this->mybalance - $this->cart->total()); }
+						  else{
+					echo  'Amount to paid: '.number_format($this->cart->total(), 0).' - '.number_format($this->mybalance, 0).' = '.number_format($this->cart->total() - $this->mybalance);		 
+			  }?></p>
+		<?php $i++; ?>
+		<?php endforeach; ?>
+	</div> 	
+	<div class="buy-actions text-right">
+		<a href="" class="btn"> Place Order </a>
+	</div>
+</div>

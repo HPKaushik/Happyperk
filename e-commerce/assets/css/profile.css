@@ -1,0 +1,60 @@
+.panel .panel-heading {
+    background-color: transparent;
+    border-bottom: 1px solid #ddd;
+    padding: 25px 10px 5px 0px;
+}
+.panel .panel-heading a:hover, .panel .panel-heading a:active, .panel .panel-heading a[aria-expanded="true"] {
+    color: #673bb7;
+}
+.panel-group .panel {
+    margin-bottom: 0;
+    border-radius: 4px;
+}
+
+.panel-group {     margin-bottom: 20px; }
+.panel-heading a ,a:hover 
+{
+    text-decoration: none;
+    color: black;
+}
+.panel-heading a:visited {
+    color: #673bb7;
+}
+.error {color: red;}
+.loader {
+    border: 3px solid #ffffff;
+    border-top: 3px solid #673bb7;
+    border-radius: 132%;
+    width: 17px;
+    height: 17px;
+    animation: spin 3s linear infinite;
+    display: inline-flex;
+    margin: auto 6px;
+}
+.m-t-20 {
+    margin-top: 10px !important;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.radio label .circle ,.radio input[type=radio]:checked~.circle{
+    border: 2px solid #673bb7;
+}
+.radio input[type=radio]:checked~.check {
+    background-color: #7a53c0;
+}
+
+ul#ui-id-1 {
+    display: block ;
+    z-index: 999999999999 !important;
+}
+
+.input_loading {    
+    background-color: #ffffff !important;
+    background-image: url(https://zippy.gfycat.com/EmptyDeliriousBluefish.gif) !important;
+    background-size: 25px 25px !important;
+    background-position: right center !important;
+    background-repeat: no-repeat !important;
+}

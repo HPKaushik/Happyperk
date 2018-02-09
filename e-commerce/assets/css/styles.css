@@ -1,0 +1,163 @@
+.w3ls-subscribe1 {
+    background: url(../images/3.jpg) no-repeat 0px 0px;
+    background-size: cover;
+}
+.w3ls-subscribe {
+    background: url(../images/4.jpg) no-repeat 0px 0px;
+    background-size: cover;
+}
+.agileits-border1 {
+    min-height: 484px;
+}
+.agileits-border {
+    border: solid 15px rgba(1, 1, 1, 0.37);
+    padding: 3em;
+}
+.w3ls-subscribe h4 {
+    color: #FFFFFF;
+    font-size: 1em;
+    margin: 0 0 1em 0;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+.w3ls-subscribe p {
+    color: #FFFFFF;
+    font-size: .9em;
+    margin: 1em 0;
+    line-height: 1.8em;
+}
+.w3ls-subscribe input[type="email"], .w3ls-subscribe input[type="text"], .w3ls-subscribe input[type="password"] {
+    outline: none;
+    padding: 1em;
+    background: none;
+    border: none;
+    border-bottom: 1px solid #ffffff;
+    color: #FFFFFF;
+    font-size: .9em;
+    margin: 0 0 1.5em 0;
+    width: 93%;
+}
+.w3ls-subscribe input[type="submit"], .w3ls-subscribe input[type="button"] {
+    color: #000000;
+    font-size: .9em;
+    text-decoration: none;
+    padding: 1em 2em;
+    cursor: pointer;
+    background: #FFFFFF;
+    text-transform: uppercase;
+    font-weight: 600;
+    text-align: center;
+    border: solid 1px #ffffff;
+    transition: 0.5s all;
+    -webkit-transition: 0.5s all;
+    -o-transition: 0.5s all;
+    -moz-transition: 0.5s all;
+    -ms-transition: 0.5s all;
+}
+.agileinfo-follow {
+    margin: 4em 0 2em 0;
+    text-align: center;
+}
+.agileinfo-follow h4 {
+    color: #ffffff;
+    font-size: 1em;
+    font-weight: 600;
+}
+.agileinfo-social-grids {
+    text-align: center;
+}
+.agileinfo-social-grids ul {
+    padding: 0;
+    margin: 0;
+}
+.agileinfo-social-grids ul a i.fa {
+    height: 30px;
+    width: 30px;
+    border: solid 2px rgba(255, 255, 255, 0.3);
+    line-height: 29px;
+    background: none;
+    color: #FFFFFF;
+    transition: 0.5s all;
+    -webkit-transition: 0.5s all;
+    -moz-transition: 0.5s all;
+    -o-transition: 0.5s all;
+    -ms-transition: 0.5s all;
+}
+.agile-signin h4 {
+    text-align: center;
+    color: #FFFFFF;
+    font-size: .9em;
+    margin: 1em 0 0 0;
+}
+.agile-signin h4 a {
+    color: #0d8cc6;
+    text-decoration: none;
+}
+
+::-webkit-input-placeholder {
+    color: white;
+}
+::-moz-placeholder { /* Firefox 19+ */
+    color: white;
+}
+:-ms-input-placeholder { /* IE 10+ */
+    color: white;
+}
+:-moz-placeholder { /* Firefox 18- */
+    color: white;
+}
+
+.w3ls-wallet {
+    background: url(../images/otpbackground-min.jpg) no-repeat 0px 0px;
+    background-size: cover;
+}
+.no-border {
+    border: 0px !important; 
+}
+
+.scrollbar {
+    background-color: #F5F5F5;
+    float: left;
+    height: 300px;
+    margin-bottom: 25px;
+    margin-left: 22px;
+    margin-top: 40px;
+    width: 65px;
+    overflow-y: scroll;
+}
+
+.force-overflow {
+    min-height: 450px;
+}
+::-webkit-scrollbar {
+    width: 8px;  /* remove scrollbar space */
+    /*background: transparent;   optional: just make scrollbar invisible */
+    background-color: #F5F5F5;
+    /*    float: left;
+        height: 300px;
+        margin-bottom: 25px;
+        margin-left: 22px;
+        margin-top: 40px;
+        width: 65px;
+        overflow-y: scroll;*/
+}
+::-webkit-scrollbar-track
+{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar
+{
+    width: 7px;
+    background-color: #F5F5F5;
+    border-radius: 3px;
+}
+::-webkit-scrollbar-thumb
+{
+    background-color: #673bb7;
+    background-image: -webkit-gradient(linear, 0 0, 0 100%,
+        color-stop(.5, rgba(255, 255, 255, .2)),
+        color-stop(.5, transparent), to(transparent));
+}

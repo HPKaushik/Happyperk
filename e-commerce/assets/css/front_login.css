@@ -1,0 +1,19 @@
+html, body, #HpLoginScrolls, .height100, .main-container {
+        height: 100%;
+        margin: 0;
+    }
+    .item {
+        text-align: center;
+    }
+    #HpLoginScrolls {
+        height: 100%;
+        margin: 0;
+    } 
+    .hp-scroll{display:block;position:relative;overflow:hidden}
+    .hp-scroll-box,.hp-scroll-box .item{height:100%;width:100%;margin:0}
+    .hp-scroll-box .item{overflow:hidden}
+    .hp-scroll-indicators{z-index:1000;position:fixed;top:50%;left:30px;text-align:center;padding:0;margin:-40px 0 0 0}
+    .hp-scroll-indicators li{display:block;position:relative;z-index:1001;list-style:none;cursor:pointer;width:20px;height:20px;padding:5px}
+    .hp-scroll-indicators li:before{content:'';-webkit-transition:all .1s;-moz-transition:all .1s;-ms-transition:all .1s;-o-transition:all .1s;transition:all .1s;display:block;position:absolute;width:4px;height:4px;border-radius:50%;left:50%;top:50%;margin:-2px 0 0 -2px;background:#4e97f3}
+    .hp-scroll-indicators li:hover:before{width:9px;height:9px;border-radius:50%;margin:-4px 0 0 -4px}.hp-scroll-indicators li.active:before{width:10px;height:10px;border-radius:50%;margin:-5px 0 0 -5px}
+    .hp-scroll-box{-webkit-transition:transform 600ms;-moz-transition:transform 600ms;-ms-transition:transform 600ms;-o-transition:transform 600ms;transition:transform 600ms}

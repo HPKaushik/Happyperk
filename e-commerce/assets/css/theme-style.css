@@ -1,0 +1,552 @@
+/*  ********************* BLACK THEME ************************** */
+.black_theme .store_header{
+	background:url('../images/store/black-theme/header_bg.png');
+}
+.black_theme .storeNavBar{
+	background:#000;
+}
+.black_theme .storeNavBar ul li, .black_theme .storeNavBar ul li a{
+	color:#fff;
+}
+.black_theme .nav .open>a, .black_theme .nav .open>a:focus, .black_theme .nav .open>a:hover,
+.black_theme .storeNavBar ul li a:hover{
+	background:#fff;
+	color:#000;
+}
+.black_theme .navbar-nav>li>.dropdown-menu{
+	background:#000;
+}
+.black_theme .black_btn{
+	background:#000;
+	border:1px solid #000;
+}
+.black_theme .black_btn:hover, .black_theme .add2cart_box a.black_btn:hover{
+	background:#fff;
+	color:#000;
+}
+
+
+
+
+/*  *********************  PURPLE THEME ************************** */
+.purple_theme .store_header{
+	background:url('../images/store/black-theme/header_bg.png');
+}
+.purple_theme .storeNavBar{
+	background:#421C52;
+}
+.purple_theme .storeNavBar ul li, .purple_theme .storeNavBar ul li a{
+	color:#fff;
+}
+.purple_theme .nav .open>a, .purple_theme .nav .open>a:focus, .purple_theme .nav .open>a:hover,
+.purple_theme .storeNavBar ul li a:hover{
+	background:#fff;
+	color:#421C52;
+}
+.purple_theme .navbar-nav>li>.dropdown-menu{
+	background:#421C52;
+}
+.purple_theme .black_btn{
+	background:#421C52;
+	border:1px solid #421C52;
+}
+.purple_theme .black_btn:hover, .purple_theme .add2cart_box a.black_btn:hover{
+	background:#fff;
+	color:#421C52;
+}
+.purple_theme .gray_btn{
+	border:1px solid transparent;
+}
+.purple_theme .gray_btn:hover{
+	background:#fff;
+	color:#421C52;
+	border:1px solid #421C52;
+}
+
+
+
+
+/*  ********************* OLIVE GREEN  THEME ************************** */
+.olive_theme .store_header{
+	background:url('../images/store/black-theme/header_bg.png');
+}
+.olive_theme .storeNavBar{
+	background:#6B8E23;
+}
+.olive_theme .storeNavBar ul li, .olive_theme .storeNavBar ul li a{
+	color:#fff;
+}
+.olive_theme .nav .open>a, .olive_theme .nav .open>a:focus, .olive_theme .nav .open>a:hover,
+.olive_theme .storeNavBar ul li a:hover{
+	background:#fff;
+	color:#6B8E23;
+}
+.olive_theme .navbar-nav>li>.dropdown-menu{
+	background:#6B8E23;
+}
+.olive_theme .black_btn{
+	background:#6B8E23;
+	border:1px solid #6B8E23;
+}
+.olive_theme .black_btn:hover, .olive_theme .add2cart_box a.black_btn:hover{
+	background:#fff;
+	color:#6B8E23;
+}
+.olive_theme .gray_btn{
+	border:1px solid transparent;
+}
+.olive_theme .gray_btn:hover{
+	background:#fff;
+	color:#6B8E23;
+	border:1px solid #6B8E23;
+}
+
+
+
+
+
+/*  ********************* LIGHT GREEN  THEME ************************** */
+.litGreen_theme .store_header{
+	background:url('../images/store/black-theme/header_bg.png');
+}
+.litGreen_theme .storeNavBar{
+	background:#E3F3B2;
+}
+.litGreen_theme .storeNavBar ul li, .litGreen_theme .storeNavBar ul li a{
+	color:#6B8E23;
+}
+.litGreen_theme .nav .open>a, .litGreen_theme .nav .open>a:focus, .litGreen_theme .nav .open>a:hover,
+.litGreen_theme .storeNavBar ul li a:hover{
+	background:#6B8E23;
+	color:#E3F3B2;
+}
+.litGreen_theme .navbar-nav>li>.dropdown-menu{
+	background:#E3F3B2;
+}
+.litGreen_theme .black_btn{
+	background:#E3F3B2;
+	border:1px solid #E3F3B2;
+	color:#6B8E23;
+}
+.litGreen_theme .black_btn:hover, .litGreen_theme .add2cart_box a.black_btn:hover{
+	background:#6B8E23;
+	color:#E3F3B2;
+}
+.litGreen_theme .gray_btn{
+	border:1px solid transparent;
+}
+.litGreen_theme .gray_btn:hover{
+	background:#6B8E23;
+	color:#E3F3B2;
+	border:1px solid #E3F3B2;
+}
+
+
+
+
+/*  ********************* ORANGE THEME ************************** */
+.org_theme .store_header{
+	background:url('../images/store/black-theme/header_bg.png');
+}
+.org_theme .storeNavBar{
+	background:#FE6700;
+}
+.org_theme .storeNavBar ul li, .org_theme .storeNavBar ul li a{
+	color:#fff;
+}
+.org_theme .nav .open>a, .org_theme .nav .open>a:focus, .org_theme .nav .open>a:hover,
+.org_theme .storeNavBar ul li a:hover{
+	background:#fff;
+	color:#FE6700;
+}
+.org_theme .navbar-nav>li>.dropdown-menu{
+	background:#FE6700;
+}
+.org_theme .black_btn{
+	background:#FE6700;
+	border:1px solid #FE6700;
+}
+.org_theme .black_btn:hover, .org_theme .add2cart_box a.black_btn:hover{
+	background:#fff;
+	color:#FE6700;
+}
+.org_theme .gray_btn{
+	border:1px solid transparent;
+}
+.org_theme .gray_btn:hover{
+	background:#fff;
+	color:#FE6700;
+	border:1px solid #FE6700;
+}
+
+/*  ********************* BLACK AND RED  THEME ************************** */
+.red_and_black_theme .store_header{
+	background:url('../images/store/black-theme/header_bg.png');
+}
+.red_and_black_theme .storeNavBar{
+	background:#000;
+}
+.red_and_black_theme .storeNavBar ul li, .red_and_black_theme .storeNavBar ul li a{
+	color:#fff;
+}
+.red_and_black_theme .nav .open>a, .red_and_black_theme .nav .open>a:focus, .red_and_black_theme .nav .open>a:hover,
+.red_and_black_theme .storeNavBar ul li a:hover{
+	background:#AE0202;
+	color:#fff;
+}
+.red_and_black_theme .navbar-nav>li>.dropdown-menu{
+	background:#AE0202;
+}
+.red_and_black_theme .black_btn{
+	background:#AE0202;
+	border:1px solid #AE0202;
+}
+.red_and_black_theme .black_btn:hover, .red_and_black_theme .add2cart_box a.black_btn:hover{
+	background:#fff;
+	color:#AE0202;
+}
+.red_and_black_theme .gray_btn{
+	border:1px solid transparent;
+}
+.red_and_black_theme .gray_btn:hover{
+	background:#AE0202;
+	color:#fff;
+	border:1px solid #AE0202;
+}
+
+
+
+
+/*  ********************* PINK THEME ************************** */
+
+.pink_theme .store_header{
+	background:url('../images/store/black-theme/header_bg.png');
+}
+.pink_theme .storeNavBar{
+	background:#000;
+}
+.pink_theme .storeNavBar ul li, .pink_theme .storeNavBar ul li a{
+	color:#fff;
+}
+.pink_theme .nav .open>a, .pink_theme .nav .open>a:focus, .pink_theme .nav .open>a:hover,
+.pink_theme .storeNavBar ul li a:hover{
+	background:#FE81BB;
+	color:#fff;
+}
+.pink_theme .navbar-nav>li>.dropdown-menu{
+	background:#FE81BB;
+}
+.pink_theme .black_btn{
+	background:#FE81BB;
+	border:1px solid #FE81BB;
+}
+.pink_theme .black_btn:hover, .pink_theme .add2cart_box a.black_btn:hover{
+	background:#fff;
+	color:#FE81BB;
+}
+.pink_theme .gray_btn{
+	border:1px solid transparent;
+}
+.pink_theme .gray_btn:hover{
+	background:#FE81BB;
+	color:#fff;
+	border:1px solid #FE81BB;
+}
+.pink_theme .white_btn{
+	color:#FE81BB;
+}
+.pink_theme .white_btn:hover{
+	color:#fff;
+	background:none;
+}
+.pink_theme .green_btn{
+	background:#666;
+}
+.pink_theme .green_btn:hover{
+	background:#000;
+}
+.pink_theme .coupons_box{
+	background:#FE81BB;
+}
+
+
+
+/*  ********************* GRAY THEME ************************** */
+.gray_theme .store_header{
+	background:url('../images/store/black-theme/header_bg.png');
+}
+.gray_theme .storeNavBar{
+	background:#B6B8B7;
+}
+.gray_theme .storeNavBar ul li, .gray_theme .storeNavBar ul li a{
+	color:#fff;
+}
+.gray_theme .nav .open>a, .gray_theme .nav .open>a:focus, .gray_theme .nav .open>a:hover,
+.gray_theme .storeNavBar ul li a:hover{
+	background:#4F4F4F;
+	color:#fff;
+}
+.gray_theme .navbar-nav>li>.dropdown-menu{
+	background:#4F4F4F;
+}
+.gray_theme .black_btn{
+	background:#4F4F4F;
+	border:1px solid #4F4F4F;
+}
+.gray_theme .black_btn:hover, .gray_theme .add2cart_box a.black_btn:hover{
+	background:#fff;
+	color:#4F4F4F;
+}
+.gray_theme .gray_btn{
+	border:1px solid transparent;
+}
+.gray_theme .gray_btn:hover{
+	background:#4F4F4F;
+	color:#fff;
+	border:1px solid #4F4F4F;
+}
+.gray_theme .white_btn{
+	color:#4F4F4F;
+}
+.gray_theme .white_btn:hover{
+	color:#fff;
+	background:none;
+}
+.gray_theme .green_btn{
+	background:#666;
+}
+.gray_theme .green_btn:hover{
+	background:#000;
+}
+.gray_theme .coupons_box{
+	background:#ccc;
+}
+
+
+
+
+
+/*  ********************* ROUND CATEGORY THEME ************************** */
+
+.round_category{
+	text-align:center;
+}
+.round_category	.cat_box {
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    width: 250px;
+    height: 250px;
+    max-width: 100%;
+    border-radius: 50%;
+	background:#000;
+	box-shadow:0px 0px 10px 2px #999;
+	margin:20px 0px;
+}
+.round_category .pro_img{
+	margin-top:-25px; 	
+}
+.round_category .pro_shortDetail{
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    left: 0px;
+    height: 80px;
+    margin-top: -40px;
+    padding: 5px;
+	z-index:9;
+}
+.round_category .pro_shortDetail:after{
+	content:'';
+	display: inline-block;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background: #000;
+    width: 100%;
+	height:100%;
+    padding: 5px;
+	z-index:-1;
+	opacity:.5;
+}
+.round_category .pro_shortDetail h4,
+.round_category .pro_categroy p,
+.round_category .old_price{
+	color:#fff;
+}
+.round_category .cat_box:after{
+	display: inline-block;
+    content: '';
+    vertical-align: top;
+    position: absolute;
+    top: 50%;
+    bottom: 50%;
+	right: 50%;
+    left: 50%;
+    background: #000;
+    z-index: 9;
+    opacity: .7;
+	width:1px;
+	height:1px;	
+    transition: .5s ease;
+    -moz-transition: .5s ease;
+    -webkit-transition: .5s	ease;
+	border-radius:50%;
+}
+
+.round_category .cat_box:hover:after{
+	width:100%;
+	height:100%;
+    top: 0px;
+    bottom: 0px;
+	right: 0px;
+    left: 0px;
+    background: #000;
+}
+.round_category .cat_box .add2cart_box{
+	width:1px;
+	height:1px;
+	overflow:hidden;
+	top: 50%;
+    bottom: 50%;
+	right: 50%;
+    left: 50%;
+}
+.round_category .cat_box:hover .add2cart_box{
+	width:100%;
+	height:100%;
+    top: 0px;
+    bottom: 0px;
+	right: 0px;
+    left: 0px;
+    background: none;
+	padding:0px;
+    height: 100%;
+	opacity: 1;
+    text-align: center;
+    height: 100px;
+    margin-top: -50px;
+    top: 50%;
+    z-index: 999;
+}
+
+
+/* ********************************** Simple theme *********************************** */
+.simple_theme{
+	background:#eee;
+}
+.simple_theme .store_header{
+	background:url('../images/store/black-theme/header_bg.png');
+}
+.simple_theme .cat_box {
+    background:#fff;
+    padding: 5px 10px;
+    margin: 5px 0px;
+}
+.simple_theme .pro_img {
+    margin-bottom: 5px;
+    float: left;
+    width: 45%;	
+}
+.simple_theme .full_widthHover .cat_box:hover .add2cart_box{
+	padding:0px;
+}
+
+
+
+
+/* ********************************** Brown theme *********************************** */
+
+.brown_theme{
+	background:#12100E;
+	padding-bottom:40px;
+}
+.brown_theme .store_header{
+	background:url('../images/store/brown_texture_bg.jpg');
+}
+.brown_theme .cat_box {
+    padding: 5px 10px;
+    margin: 5px 0px;
+	background:url('../images/store/brown_cat_bg.png');
+}
+.brown_theme .pro_img {
+   
+}
+.brown_theme .full_widthHover .cat_box:hover .add2cart_box{
+	padding:60px 0px;
+}
+.brown_theme .storeNavBar{
+	background:#12100E;
+}
+.brown_theme .storeNavBar ul li, .brown_theme .storeNavBar ul li a{
+	color:#fae0c5;
+}
+.brown_theme .nav .open>a, .brown_theme .nav .open>a:focus, .brown_theme .nav .open>a:hover,
+.brown_theme .storeNavBar ul li a:hover{
+	background:#fae0c5;
+	color:#12100E;
+}
+.brown_theme .navbar-nav>li>.dropdown-menu{
+	background:#12100E;
+}
+.brown_theme .black_btn{
+	background:#12100E;
+	border:1px solid #12100E;
+}
+.brown_theme .black_btn:hover, .brown_theme .add2cart_box a.black_btn:hover{
+	background:#fae0c5;
+	color:#12100E;
+}
+.brown_theme .pro_shortDetail h4 {
+    color: #fae0c5;
+    font-weight: bold;
+    font-size: 22px;
+    margin: 10px 0px;
+}
+.brown_theme .old_price {
+    color: #fae0c5;
+    font-size: 16px;
+}
+.brown_theme .pro_categroy p {
+    color: #fae0c5;
+    font-size: 14px;
+    line-height: 18px;
+}
+.brown_theme .pro_price{
+	font-size: 18px;
+}
+
+/*  ********************* Brown AND orange  THEME ************************** */
+.orgBrw_theme .store_header{
+	background:url('../images/store/black-theme/header_bg.png');
+}
+.orgBrw_theme .storeNavBar{
+	background:#262626;
+}
+.orgBrw_theme .storeNavBar ul li, .orgBrw_theme .storeNavBar ul li a{
+	color:#fff;
+}
+.orgBrw_theme .nav .open>a, .orgBrw_theme .nav .open>a:focus, .orgBrw_theme .nav .open>a:hover,
+.orgBrw_theme .storeNavBar ul li a:hover{
+	background:#FF9800;
+	color:#fff;
+}
+.orgBrw_theme .navbar-nav>li>.dropdown-menu{
+	background:#FF9800;
+}
+.orgBrw_theme .black_btn{
+	background:#FF9800;
+	border:1px solid #FF9800;
+}
+.orgBrw_theme .black_btn:hover, .orgBrw_theme .add2cart_box a.black_btn:hover{
+	background:#fff;
+	color:#FF9800;
+}
+.orgBrw_theme .gray_btn{
+	border:1px solid transparent;
+}
+.orgBrw_theme .gray_btn:hover{
+	background:#FF9800;
+	color:#fff;
+	border:1px solid #FF9800;
+}
