@@ -86,11 +86,12 @@ defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest auto
 
 
 define('EXT','.php');
-$protocol = $root = (isset($_SERVER['HTTPS']) ? "https://" : "http://") . $_SERVER['SERVER_NAME'];
-$root .= str_replace(basename($_SERVER['SCRIPT_NAME']), '', $_SERVER['SCRIPT_NAME']);
+$root=(isset($_SERVER['HTTPS']) ? "https://" : "http://").$_SERVER['HTTP_HOST'];
+$root.= str_replace(basename($_SERVER['SCRIPT_NAME']), '', $_SERVER['SCRIPT_NAME']);
+$config['base_url'] = $root;
 
-// define('BASEURL', $root);
-define('BASEURL', 'http://localhost:8080/pagal/');
+define('BASEURL', $root);
+// define('BASEURL', 'http://'. $_SERVER['HTTP_HOST'].'/');
 define('LARAVEL_BASEURL', 'http://18.216.79.189' . '/product/superadmin');
 define('ASSETS', BASEURL . 'assets');
 define('JSURL', BASEURL . 'assets/js');
