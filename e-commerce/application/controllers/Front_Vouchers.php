@@ -8,7 +8,7 @@ class Front_Vouchers extends Front_Controller {
 
 		parent::__construct();
 		$this->loggedUser = $this->aauth->is_loggedin();
-		$this->load->model(array('vouchers_model','awards_model','home_model','brands_redeem_location_model'));
+		$this->load->model(array('vouchers_model','brands_model','category_model','awards_model','home_model','brands_redeem_location_model'));
 		// $this->load->model(array('vouchers_model', 'brands_redeem_location_model', 'home_model','awards_model'));
 	}
 
@@ -18,9 +18,9 @@ class Front_Vouchers extends Front_Controller {
 		$data['vouchers'] = $this->vouchers_model->get_vouchers($this->location_id);
 		$this->template->write('title', '');
 		/* Adding Indiviual css files */
-		$this->template->add_js('assets/js/masonry.pkgd.min.js');
-		// $this->template->add_js('assets/js/owl.carousel.min.js');
-		$this->template->add_js('assets/js/home.js');
+		$this->template->add_js(JSPATH.'/masonry.pkgd.min.js');
+		$this->template->add_js(JSPATH.'/owl.carousel.min.js');
+		$this->template->add_js(JSPATH.'/home.js');
 		$this->template->write_view('content', 'vouchers/list', isset($data) ? $data : NULL);
 		$this->template->render();
 	}
@@ -29,9 +29,9 @@ class Front_Vouchers extends Front_Controller {
 		$this->load->model('order_model');
 		$data['voucher'] = $this->vouchers_model->get_voucher($vid);
 		$data['count_coupons'] = $this->vouchers_model->get_avalible_coupon_count($vid);
-		$data['voucher_locations'] = $this->vouchers_model->get_voucher_brand_locations($vid);
+		$data['voucher_locations'] = $this->vouchers_model->get_voucher_brand_locations($vid); 
 		$data['googlemap'] = $this->load->view('vouchers/googlemap', isset($data) ? $data : NULL,true);
-		$this->template->add_js('assets/js/getCoupon.js');
+		$this->template->add_js(JSPATH.'/getCoupon.js');
 		$this->template->write_view('content', 'vouchers/view', isset($data) ? $data : NULL);
 		$this->template->render();
 	}
@@ -41,14 +41,16 @@ class Front_Vouchers extends Front_Controller {
 	// 	$replacements = '-';
 	// 	return str_replace($entities, $replacements, urlencode($string));
 	// }
+	
 	// Search by name.
 	public function search() {
 		if ($this->input->post() != '') {
-			$data = escape_post_strings($this->input->post());
-			$name = $data['name'];
-			$data['vouchers'] = $this->vouchers_model->get_vouchers($this->location_id, NULL, NULL, NULL, $name);
-			$this->template->add_js('assets/js/masonry.pkgd.min.js');
-			$this->template->add_js('assets/js/home.js');
+			$post = escape_post_strings($this->input->post());
+			$name = $post['name'];
+			$data['vouchers'] = $this->vouchers_model->searchby($name);
+			$this->template->add_js(JSPATH.'/masonry.pkgd.min.js');
+			// $this->template->add_js(JSPATH.'/owl.carousel.min.js');
+			$this->template->add_js(JSPATH.'/home.js');
 			$this->template->write_view('content', 'vouchers/list', isset($data) ? $data : NULL);
 			$this->template->render();
 		} else {

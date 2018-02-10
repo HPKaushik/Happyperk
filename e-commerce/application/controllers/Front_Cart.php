@@ -3,6 +3,9 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Front_Cart extends Front_Controller {
+ 	protected $response = array();	
+ 	protected $cashback = 0;	
+ 	protected $cashback_mode = '';	
 
 	public function __construct() {
 		parent::__construct();
@@ -12,19 +15,69 @@ class Front_Cart extends Front_Controller {
 	}
 
 	public function index() {
-		$data['base_url'] = BASEURL;
-		$cashback = 0;
+		// $thiscashback = 0;
 		if ($this->cart->contents() != '') {
 			foreach ($this->cart->contents() as $item) {
 				$cb_amount = isset($item['cashback_amount']) && $item['cashback_amount'] > 0 ? $item['cashback_amount'] : 0;
 				$cashback = $cb_amount * $item['qty'];
 			}
 		}
-		$data['cashback'] = ($cashback != 0) ? $cashback : 0;
+		$data['cashback'] = ($this->cashback != 0) ? $this->cashback : 0;
 		$this->template->write('title', 'HappyPerks');
 		$this->template->add_js('assets/js/cart.js');
 		$this->template->write_view('content', 'cart/index', isset($data) ? $data : NULL);
 		$this->template->render();
+	}
+	public function add() {
+		$usage_per_user = 0;
+		if ($this->input->post() != '') {
+			$postdata = escape_post_strings($this->input->post());
+			$this->cart->destroy();
+			// ordered voucher id
+			$id = $postdata['id'];
+			// ordered voucher quantity
+			$quantity = $postdata['quantity'];
+			// ordered voucher details
+			$voucher_details = $this->vouchers_model->get_voucher_array($id);
+
+			if (!empty($voucher_details)) {
+				$count_coupons = $this->vouchers_model->get_avalible_coupon_count($id);
+				if ($count_coupons > 0) {
+						$price = !empty($voucher_details['offer_price']) ? $voucher_details['offer_price'] : $voucher_details['price'];
+						//usage_per_user
+						if ($voucher_details['usage_per_user'] != '' && $voucher_details['usage_per_user'] < $count_coupons) {
+							$usage_per_user = $voucher_details['usage_per_user'];
+						} else {
+							$usage_per_user = $count_coupons;
+						}
+
+						// cashback of voucher
+						if (isset($voucher_details['cashback']) && !empty($voucher_details['cashback'])) {
+							if ($voucher_details['cashback_mode'] == PERCENTAGE_MODE) {
+								$this->cashback = $price * ($voucher_details['cashback'] / 100);
+							} 
+							else { 
+								$this->cashback = $voucher_details['cashback'];
+							}
+						}
+						// to make plenty string as not allowed in cart lib.
+						$result = preg_replace("/[^\\w. -]/", "", $voucher_details['name']);
+						$data = array(
+							'id' => $id,
+							'qty' => $quantity,
+							'price' => $price,
+							'name' => $result,
+							'max' => $usage_per_user,
+							'cashback_amount' => $this->cashback,
+						);
+						if ($this->cart->insert($data)) {
+							redirect('cart');
+						} else {
+							redirect('home');
+						}
+					}
+				}
+			}
 	}
 	public function review() {
 		$this->template->write('title', 'HappyPerks');
@@ -35,9 +88,8 @@ class Front_Cart extends Front_Controller {
 
 	public function recharges() {
 		$this->cart->destroy();
-		$response = array();
-		$cashback_mode = '';
-		$cashback_amount = '';
+		$this->cashback_mode = '';
+		$this->cashback = '';
 		if ($this->input->post('mobilerechargeno') != NULL && !empty($this->input->post('mobilerechargeno'))) {
 			$mobilerechargeno = $this->input->post('mobilerechargeno');
 		} else {
@@ -94,14 +146,14 @@ class Front_Cart extends Front_Controller {
 			'qty' => 1,
 			'price' => $recharge_data['mobilerechargeamount'],
 			'name' => $recharge_data['mobilerechargeno'],
-			'cashback_mode' => $cashback_mode,
-			'cashback_amount' => $cashback_amount,
+			'cashback_mode' => $this->cashback_mode,
+			'cashback_amount' => $this->cashback,
 		);
 		if ($this->cart->insert($data)) {
-			$response['success'] = 1;
-			$response['redirectUrl'] = 'cart';
+			$this->response['success'] = 1;
+			$this->response['redirectUrl'] = 'cart';
 		} else {
-			$response['success'] = 0;
+			$this->response['success'] = 0;
 		}
 
 		$this->template->write('title', 'HappyPerks');
@@ -109,12 +161,71 @@ class Front_Cart extends Front_Controller {
 		$this->template->render();
 	}
 
+
+
+	
+
+	public function remove($rowid = '') {
+		
+		if ($rowid == "all") {
+			$this->cart->destroy();
+
+			$this->response['success'] = '1';
+			$this->response['msg'] = 'Cart is clear';
+		} else {
+
+			$data = array(
+				'rowid' => $rowid,
+				'qty' => 0,
+			);
+
+			$this->cart->update($data);
+			$this->response['success'] = 1;
+			$this->response['msg'] = "Item is removed";
+			$this->response['redirectUrl'] = 'cart';
+		}
+
+		if ($this->input->is_ajax_request()) {
+			echo json_encode($this->response);
+			exit;
+		}
+
+		//redirect('checkout');
+	}
+
+	public function update_cart() {
+		$data = $this->input->post();
+
+		if ($this->cart->update($data)) {
+			$this->cashback = 0;
+			foreach ($this->cart->contents() as $item) {
+				$this->cashback += $item['cashback_amount'] * $item['qty'];
+			}
+			$this->response['success'] = 1;
+			$this->response['items_count'] = count($this->cart->contents());
+			$this->response['items_total_amount'] = "Rs. " . number_format($this->cart->total(), 0, '.', ',');
+			$this->response['cashback_amount'] = "Rs. " . number_format($cashback, 0, '.', ',');
+
+			if ($this->cart->total() > $this->mybalance) {
+				$this->response['info'] = "You have to pay using debit card or Net banking";
+			}
+		} else {
+			$this->response['success'] = 0;
+		}
+
+		if ($this->input->is_ajax_request()) {
+			echo json_encode($this->response);
+			exit;
+		}
+	}
+
+}
+
 	// public function add_hotels() {
 	// 	$this->cart->destroy();
 
-	// 	$response = array();
-	// 	$cashback_mode = '';
-	// 	$cashback_amount = '';
+	// 	$this->cashback_mode = '';
+	// 	$this->cashback = '';
 
 	// 	/* $hp_id = $this->input->post('id'); */
 	// 	$hp_id = 12;
@@ -131,135 +242,18 @@ class Front_Cart extends Front_Controller {
 	// 		'qty' => $quantity,
 	// 		'price' => $price,
 	// 		'name' => $hotel_package_data['name'],
-	// 		'cashback_mode' => $cashback_mode,
-	// 		'cashback_amount' => $cashback_amount,
+	// 		'cashback_mode' => $this->cashback_mode,
+	// 		'cashback_amount' => $this->cashback,
 	// 	);
 
 	// 	if ($this->cart->insert($data)) {
-	// 		$response['success'] = 1;
-	// 		$response['redirectUrl'] = 'cart';
+	// 		$this->response['success'] = 1;
+	// 		$this->response['redirectUrl'] = 'cart';
 	// 	} else {
-	// 		$response['success'] = 0;
+	// 		$this->response['success'] = 0;
 	// 	}
 	// 	if ($this->input->is_ajax_request()) {
-	// 		echo json_encode($response);
+	// 		echo json_encode($this->response);
 	// 		exit;
 	// 	}
 	// }
-
-	public function add() {
-		$response = array();
-		$cashback_mode = '';
-		$usage_per_user = 0;
-		$cashback_amount = 0;
-		if ($this->input->post() != '') {
-			$this->cart->destroy();
-			// ordered voucher id
-			$id = $this->input->post('id');
-			// ordered voucher quantity
-			$quantity = $this->input->post('quantity');
-			// ordered voucher details
-			$voucher_details = $this->vouchers_model->get_voucher_array($id);
-
-			if (!empty($voucher_details)) {
-				$count_coupons = $this->vouchers_model->get_avalible_coupon_count($id);
-				if ($count_coupons > 0) {
-					$price = !empty($voucher_details['offer_price']) ? $voucher_details['offer_price'] : $voucher_details['price'];
-					if ($voucher_details['usage_per_user'] != '' && $voucher_details['usage_per_user'] < $count_coupons) {
-						$usage_per_user = $voucher_details['usage_per_user'];
-					} else {
-						$usage_per_user = $count_coupons;
-					}
-					// cashback of voucher
-					if (isset($voucher_details['cashback']) && !empty($voucher_details['cashback'])) {
-						if ($voucher_details['cashback_mode'] == PERCENTAGE_MODE) {
-							// $cashback_mode = 'P';
-							$cashback_amount = $price * ($voucher_details['cashback'] / 100);
-						} else {
-							// $cashback_mode = 'F';
-							$cashback_amount = $voucher_details['cashback'];
-						}
-					}
-					$re = "/[^\\w. -]/";
-					$result = preg_replace($re, "", $voucher_details['name']);
-					$data = array(
-						'id' => $id,
-						'qty' => $quantity,
-						'price' => $price,
-						'name' => $result,
-						'max' => $usage_per_user,
-						'cashback_amount' => $cashback_amount,
-					);
-					if ($this->cart->insert($data)) {
-						$response['success'] = 1;
-						$response['redirectUrl'] = 'cart';
-					} else {
-						$response['success'] = 0;
-					}
-					if ($this->input->is_ajax_request()) {
-						echo json_encode($response);
-						exit;
-					}
-				}
-			}
-		}
-		// redirect('cart/');
-	}
-
-	public function remove($rowid = '') {
-		$response = array();
-
-		if ($rowid == "all") {
-			$this->cart->destroy();
-
-			$response['success'] = '1';
-			$response['msg'] = 'Cart is clear';
-		} else {
-
-			$data = array(
-				'rowid' => $rowid,
-				'qty' => 0,
-			);
-
-			$this->cart->update($data);
-			$response['success'] = 1;
-			$response['msg'] = "Item is removed";
-			$response['redirectUrl'] = 'cart';
-		}
-
-		if ($this->input->is_ajax_request()) {
-			echo json_encode($response);
-			exit;
-		}
-
-		//redirect('checkout');
-	}
-
-	public function update_cart() {
-		$response = array();
-		$data = $this->input->post();
-
-		if ($this->cart->update($data)) {
-			$cashback = 0;
-			foreach ($this->cart->contents() as $item) {
-				$cashback += $item['cashback_amount'] * $item['qty'];
-			}
-			$response['success'] = 1;
-			$response['items_count'] = count($this->cart->contents());
-			$response['items_total_amount'] = "Rs. " . number_format($this->cart->total(), 0, '.', ',');
-			$response['cashback_amount'] = "Rs. " . number_format($cashback, 0, '.', ',');
-
-			if ($this->cart->total() > $this->mybalance) {
-				$response['info'] = "You have to pay using debit card or Net banking";
-			}
-		} else {
-			$response['success'] = 0;
-		}
-
-		if ($this->input->is_ajax_request()) {
-			echo json_encode($response);
-			exit;
-		}
-	}
-
-}

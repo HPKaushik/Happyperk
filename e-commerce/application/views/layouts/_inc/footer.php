@@ -41,6 +41,48 @@
 <?php }?>
 <?php endif;?>
 </div>
+<div class="row m0">
+         <!-- <div class="col-sm-1" ></div> -->
+    <div class="col-sm-12">
+        <div class="col-sm-3">
+            <div class="card">
+                <div class="card-header">
+                   <p class="text-center mt15"><img src="<?php echo IMGURL; ?>/best-price.png"></p>
+                   <h5 class="text-center"> Best Price</h5>
+                   <p>Happiness is guaranteed at Paytm. If we fall short of your expectations, give us a shout.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="card">
+                <div class="card-header">
+                    <p class="text-center mt15"><img src="<?php echo IMGURL; ?>/best-price.png"></p>
+                    <h5 class="text-center">100% Secured Payment</h5>
+                    <p>Happiness is guaranteed at Paytm. If we fall short of your expectations, give us a shout.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="card">
+                <div class="card-header">
+                    <p class="text-center mt15"><img src="<?php echo IMGURL; ?>/best-price.png"></p>
+                   <h5 class="text-center"> Freedom to choose perks </h5>
+                   <p>Happiness is guaranteed at Paytm. If we fall short of your expectations, give us a shout.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="card">
+                <div class="card-header">
+                    <p class="text-center mt15"><img src="<?php echo IMGURL; ?>/best-price.png"></p>
+                  <h5 class="text-center"> Our Promise</h5>
+                  <p>Happiness is guaranteed at Paytm. If we fall short of your expectations, give us a shout.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="col-sm-1"></div> -->
+</div>
     <div class="footer-container">
         <div class="footer">
             <div class="footer-top ptb15">
@@ -109,22 +151,13 @@
                         <div class = "col-lg-3">
                             <div class = "row">
                                 <div class = "col-lg-12">
-                                    <ul class = "nav text-center text-uppercase footer-links pull-left">
-                                        <li><a href = "#"><i class = "hp-icons">mood</i></a></li>
-                                        <li><a href = "#"><i class = "hp-icons">subscriptions</i></a></li>
-                                        <li><a href = "#"><i class = "hp-icons">web</i></a></li>
-                                        <li><a href = "#"><i class = "hp-icons">videocam</i></a></li>
+                                    <ul class="nav text-center text-uppercase footer-links">
+                                        <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-youtube-play" aria-hidden="true"></i></a></li>
+                                        <li><a href="https://in.linkedin.com/company/happyperks"><i class="fa fa-linkedin-square"></i></a></li>
+                                        <li><a href="#"><i aria-hidden="true" class="fa fa-google plus"></i></a></li>
                                     </ul>
                                 </div>
-                                <!--   <div class = "col-lg-12 border-gery-top">
-
-
-                                   <ul class = "nav text-center text-uppercase footer-links">
-                                         <li><a href = "#"><i class = "hp-icons">payment</i></a></li>
-                                         <li><a href = "#"><i class = "hp-icons">payment</i></a></li>
-                                         <li><a href = "#"><i class = "hp-icons">payment</i></a></li>
-                                     </ul>
-                                   </div>-->
                                 <div class="col-lg-3 text-center hide">
                                     <a  target="_blank" href="http://www.Amazon.in/exec/obidos/redirect-home?tag=happyperks-21&placement=home_multi.gif&site=amazon">
                                         <img src="http://g-ec2.images-amazon.com/images/G/31/associates/promohub/amazonIN_logo_200_75.jpg?tag-id=happyperks-21" border="0" alt="In Association with Amazon.in">
@@ -138,7 +171,7 @@
         </div>
     </div>
     <!--How it work modal-->
-    <div class="modal fade in" id="itWorkModal" role="dialog" style="display: none; padding-right: 17px;">
+<div class="modal fade in" id="itWorkModal" role="dialog" style="display: none; padding-right: 17px;">
         <div class="modal-dialog" style="width:100%; margin:0px;">
             <div class="modal-content">
                 <div class="modal-body">
@@ -150,30 +183,23 @@
                             <div class="wrapper">
                                 <div class="row">
                                     <div class="col-sm-12">
-                                        <div class="col-sm-3">
+                                        <div class="col-sm-4">
                                             <div class="text-center margin-bottom-s">
-                                                <img alt="" class="img-responsive" height="251" src="https://res4.nbstatic.in/static/images/nb-how-it-works-explore.png" width="251" xsrc="https://res4.nbstatic.in/static/images/nb-how-it-works-explore.png" data-lzled="true">
+                                                <img alt="" class="img-responsive" height="251" src="<?php echo IMGURL.'/hiw1.png'?>" width="251" xsrc="<?php echo IMGURL.'/hiw1.png'?>" data-lzled="true">
                                                 <p class="h5 font-weight-semibold text-uppercase"> Explore </p>
                                                 <p class=""> Amazing options at restaurants, spas, gyms, movies, hotels and more around you. </p>
                                             </div>
                                         </div>
-                                        <div class="col-sm-3">
+                                        <div class="col-sm-4">
                                             <div class="text-center margin-bottom-s">
-                                                <img alt="" class="img-responsive" height="251" src="https://res4.nbstatic.in/static/images/nb-how-it-works-buy.png" width="251" xsrc="https://res4.nbstatic.in/static/images/nb-how-it-works-buy.png" data-lzled="true">
+                                                <img alt="" class="img-responsive" height="251" src="<?php echo IMGURL.'/hiw2.png'?>" width="251" xsrc="<?php echo IMGURL.'/hiw2.png'?>" data-lzled="true">
                                                 <p class="h5 font-weight-semibold text-uppercase"> Buy </p>
                                                 <p class=""> Easily and securely, using credit/debit cards, net-banking or wallets. </p>
                                             </div>
                                         </div>
-                                        <div class="col-sm-3">
+                                        <div class="col-sm-4">
                                             <div class="text-center margin-bottom-s">
-                                                <img alt="" class="img-responsive" height="251" src="https://res4.nbstatic.in/static/images/nb-how-it-works-enjoy.png" width="251" xsrc="https://res4.nbstatic.in/static/images/nb-how-it-works-enjoy.png" data-lzled="true">
-                                                <p class="h5 font-weight-semibold text-uppercase"> Enjoy </p>
-                                                <p class=""> The service by simply showing your voucher on the nearbuy app. </p>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-3">
-                                            <div class="text-center margin-bottom-s">
-                                                <img alt="" class="img-responsive" height="251" src="https://res4.nbstatic.in/static/images/nb-how-it-works-enjoy.png" width="251" xsrc="https://res4.nbstatic.in/static/images/nb-how-it-works-enjoy.png" data-lzled="true">
+                                                <img alt="" class="img-responsive" height="251" src="<?php echo IMGURL.'/hiw3.png'?>" width="251" xsrc="<?php echo IMGURL.'/hiw3.png'?>" data-lzled="true">
                                                 <p class="h5 font-weight-semibold text-uppercase"> Enjoy </p>
                                                 <p class=""> The service by simply showing your voucher on the nearbuy app. </p>
                                             </div>

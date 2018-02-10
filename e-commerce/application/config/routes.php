@@ -93,7 +93,7 @@ $route['cart/add'] = "Front_Cart/add";
 $route['cart/recharges'] = "Front_Cart/recharges";
 $route['cart/review'] = "Front_Cart/review";
 
-$route['placeorder'] = "Front_Buy/placeorder";
+$route['placeorder'] = "Front_Orders/placeorder";
 $route['cart/ordersuccess'] = "Front_Buy/order_success";
 $route['placerechargeorder'] = "Front_Buy/placerechargeorder";
 

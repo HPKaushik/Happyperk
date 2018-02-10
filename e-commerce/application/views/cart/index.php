@@ -1,4 +1,4 @@
-    <?php $rechargdata = get_session_var('rechargevalue');?>
+<?php $rechargdata = get_session_var('rechargevalue');?>
 <div class="container">
 <?php if (!empty($this->cart->contents())) {
 $num_of_items = count($this->cart->contents());

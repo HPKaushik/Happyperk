@@ -31,7 +31,6 @@ class Vouchers_model extends Front_Model {
 			$this->db->select('distinct(nv.id), nv.*,b.name as brandname,b.id as brandid,b.logo as brandlogo');
 			$this->db->join(BRANDS_TABLE . ' as b', 'b.id = nv.brand', 'left');
 			$this->db->group_by('nv.id');
-			$this->db->order_by('nv.id', 'DESC');
 			$this->db->where_in('nv.id', $this->somename($query));
 			if ($lastID != '') {
 				$this->db->where('nv.id  <' . $lastID);
@@ -40,6 +39,7 @@ class Vouchers_model extends Front_Model {
 				$this->db->like('nv.name', $search_by_name);
 			}
 			$this->db->limit($limit, $offset);
+			$this->db->order_by('rand()');
 			$query = $this->db->get($this->table . ' as nv');
 			return $query->result();
 		}
@@ -52,6 +52,20 @@ class Vouchers_model extends Front_Model {
 		}, $query->result_array());
 	}
 
+	public function searchby($keyword='')
+	{
+		$brandids = array();	
+		$this->db->select('distinct(voucher.id) , brand.id as brandid ,voucher.*');
+		$this->db->like('brand.name',$keyword);
+		$this->db->or_like('voucher.name',$keyword);
+		$this->db->or_where("brand.id  in (SELECT brand_id FROM ".BRANDS_REDEEM_LOCATIONS_TABLE." WHERE address LIKE '%".$keyword."%')");
+		$this->db->or_where("brand.category_id  in (SELECT id FROM ".CATEGORIES_TABLE." WHERE name LIKE '%".$keyword."%')");
+		$this->db->join(BRANDS_TABLE . ' as brand', 'brand.id = voucher.brand','left');
+		$category  = $this->db->get($this->table . ' as voucher');
+		
+		return $category->result_array();
+	}
+	
 	public function get_vocher_cashback_categories($vid) {
 		$query = $this->db->where('vcm.voucher_id', $vid)
 			->join(VOUCHER_CATEGORIES_MAP_TABLE . ' as vcm', 'c.id = vcm.category_id')
@@ -60,7 +74,7 @@ class Vouchers_model extends Front_Model {
 	}
 
 	public function get_voucher($vid) {
-		$query = $this->db->select('v.*,b.name as brandname,b.logo as brandlogo,b.id as brandid,b.category_id as brandcategoryid')
+		$query = $this->db->select('v.*,b.name as brandname,b.logo as brandlogo,b.id as brandid,b.description as branddescription,b.category_id as brandcategoryid')
 			->where('v.id =' . $vid)
 //                ->where('( DATE(NOW())< v.valid_from or DATE(NOW()) > v.valid_from or v.valid_from is null) and (v.valid_to >= DATE(NOW()) )')
 			->join(BRANDS_TABLE . ' as b', 'b.id = v.brand', 'left')

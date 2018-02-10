@@ -59,7 +59,7 @@ $autoload['packages'] = array();
 |	$autoload['libraries'] = array('user_agent' => 'ua');
 */
 $autoload['libraries'] = array('aauth','template','session','oxigenapi','database','uploadfile','imageupload','cart'
-,'transaction','hash','phpmailer','bcrypt');
+,'transaction','hash','phpmailer','bcrypt','order');
 
 /*
 | -------------------------------------------------------------------

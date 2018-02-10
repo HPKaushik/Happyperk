@@ -1,0 +1,14 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 col-md-10 col-md-offset-1">
+			<h3> Your order has been placed!...</h3>
+			
+			<div class="order-details">
+				<div class="order-info">
+					<p>Your Order Number is <strong style="color:green;"><?php echo !empty($order_id) ? $order_id : '';?></strong></p>
+					<p>You'll receive an email confirmation shortly to <strong style="color:green;"><?php echo !empty($email) ? $email: '';?></strong></p>
+				</div>
+			</div>
+		</div>
+    </div>
+</div>

@@ -54,7 +54,9 @@
                                 <?php echo  $this->session->flashdata('msg_succ'); ?></span>
                         </div>
                         <?php endif; ?>
-                        <?php echo form_open('cart/recharges', array('id' => 'formMobileRecharge')) ?>
+                        <?php 
+                        $url = ($this->aauth->is_loggedin()) ? "cart/recharges" : "user/login";
+                        echo form_open($url, array('id' => 'formMobileRecharge')) ?>
                         <div class="row m0">
                             <div class="form-group">
                                 <div class="radio">

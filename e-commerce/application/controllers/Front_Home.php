@@ -7,7 +7,7 @@ class Front_Home extends Front_Controller {
 	function __construct() {
 		parent::__construct();
 		$this->template->set_template('common');
-		$this->load->model(array('vouchers_model','awards_model','home_model'));
+		$this->load->model(array('vouchers_model','awards_model','home_model','location_model','available_location_model'));
 	}
 	function index() { 
 		if(get_session_var('logged_in') && $this->USER_DETAILS['is_wallet_exist']==0)
@@ -28,14 +28,14 @@ class Front_Home extends Front_Controller {
 			if (!empty($this->userId)) {
 				$this->setLocation($this->userId, $loc_id);
 			}
-		} else {
-			$location = $this->location_model->getRow('id, location_name, city', array('id' => $loc_id));
+		 else {
+			$location = $this->available_location_model->getRow('*', array('id' => $loc_id));
 			if (!empty($location)) {
-				$currentCity = $this->available_location_model->getRow('*', array('city_id' => $location->city));
+				$currentCity = $this->available_location_model->getRow('*', array('city_id' => $location->city_id));
 				$this->session->set_userdata('user_location', (array) $currentCity);
+				}
 			}
 		}
 		redirect('');
 	}
-
 }// 

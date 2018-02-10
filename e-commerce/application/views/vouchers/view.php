@@ -1,4 +1,5 @@
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.css">
+<?php  $default_coupon_image = IMGURL.'/coupons/voucher-image-1.png'?>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.css">
 <div class="content">
     <div class="container">
         <div class="row">
@@ -20,7 +21,7 @@
                         <div class="col-xs-12 col-sm-12">
                             <div class="col-xs-12">
                                 <ul class="nav text-uppercase">
-                                    <li class="display-inline-block">About Brand  </li>
+                                    <li class="display-inline-block">About <b><?php echo (isset($voucher->brandname)) ? $voucher->brandname :''; ?></b></li>
                                     <?php
                                     if (!empty($voucher->cashback_mode)) {
                                     $cbackamount = ($voucher->cashback_mode == 0) ? (!empty($voucher->offer_price)) ? ($voucher->offer_price * $voucher->cashback) : ($voucher->price * $voucher->cashback) : $voucher->cashback;
@@ -31,11 +32,11 @@
                             </div>
                             <div class="col-xs-12">
                                 <p class="lp1 theme-grey-color mt10">
-                                    <?php echo (strlen($voucher->description) > 150) ? substr($voucher->description, 0, 150) . '..' : $voucher->description; ?>
+                                    <?php echo (strlen($voucher->branddescription) > 150) ? substr($voucher->branddescription, 0, 150) . '..' : $voucher->branddescription; ?>
                                 </p>
                             </div>
                         </div>
-                <?php $brandsloc=$this->brands_redeem_location_model->getResult('*',array('brand_id'=>$voucher->brandid)); 
+                <?php $brandsloc = $this->brands_redeem_location_model->getResult('*',array('brand_id'=>$voucher->brandid)); 
                         if(count($brandsloc) > 0)  {  ?>
                         <div class="col-md-12 col-xs-12 mtb15">
                             <h6 class="text-middle-line text-uppercase mtb15 lp1 theme-grey-color"><span>Redeem Locations</span></h6>
@@ -50,65 +51,52 @@
                                 <?php } else  { ?>
                                      Total available <b><?php echo count($brandsloc); ?></b> Redemption locations.   
                                 <?php } ?>
-                                <a href="javascript:" data-toggle="modal" data-target="#RedeemlocationModal" class="theme-color">View All Locations</a>
+                                <a href="javascript:void(0)" data-toggle="modal" data-target="#RedeemlocationModal" class="theme-color">View All Locations</a>
                             </div>
                         </div>
                     <?php } ?>
                     </div>
                 </div>
-
                 <div class="col-lg-7 col-sm-6 col-xs-12">
                     <div class="card res-max-height-340 no-background">
                         <div class="hp-gallery">
                             <div class="row">
                                 <div class="col-sm-12 col-lg-8 col-xs-8 height100 res-max-height-340" >
-                                    <?php if (!empty($voucher->image_1)) {?>
-                                        <a class="lightbox" href="<?php echo LARAVEL_IMAGE_PATH . $voucher->image_1; ?>">
-                                        <?php } else {?>
-                                            <a class="lightbox" href="<?php echo IMGURL.'/coupons/voucher-image-1.png' ?>">
-                                            <?php }?>
-                                            <span class="content-top discount deal background-white theme-purple-color">
-                                             <?php $discount=(($voucher->price-$voucher->offer_price)/$voucher->price)*100;
-                                             echo (!empty($discount)) ? number_format($discount, 0) . '% Off' : '';
-                                             ?>
-                                            </span>
-                                            <?php if (!empty($voucher->image_1)) {?>
-                                                <img src="<?php echo LARAVEL_IMAGE_PATH . $voucher->image_1; ?>" alt="<?php echo (!empty($voucher)) ? $voucher->name : ''; ?>" class="height100 img-responsive">
-                                                 <?php } else {?>
-                                                <img src="<?php echo IMGURL.'/coupons/voucher-image-1.png' ?>" alt="<?php echo (!empty($voucher)) ? $voucher->name : ''; ?>" class="height100 img-responsive">
-                                                 <?php }?>
-                                        </a>
+                                <a class="lightbox" href="<?php echo (!empty($voucher->image_1)) ? LARAVEL_IMAGE_PATH . $voucher->image_1 : $default_coupon_image; ?>">
+                                <span class="content-top discount deal background-white theme-purple-color">
+                                <?php $discount=(($voucher->price-$voucher->offer_price) / $voucher->price)*100;
+                                echo (!empty($discount)) ? number_format($discount, 0) . '% Off' : '';?>
+                                </span>
+                                <img src="<?php echo (!empty($voucher->image_1)) ? LARAVEL_IMAGE_PATH . $voucher->image_1 : $default_coupon_image; ?>" alt="<?php echo (!empty($voucher)) ? $voucher->name : ''; ?>" class="height100 img-responsive">
+                                </a>
                                 </div>
                                 <div class="col-sm-6 col-lg-4 col-xs-4 res-max-height-170 res-min-height-170 mb5 res-mt10">
-
-                                    <?php if (!empty($voucher->image_2)) {?>
-                                        <a class="lightbox" href="<?php echo LARAVEL_IMAGE_PATH . $voucher->image_2; ?>">
-                                        <?php } else {?>
-                                          <a class="lightbox" href="<?php echo IMGURL.'/coupons/voucher-image-2.png' ?>">
-                                            <?php }?>
-                                            <?php if (!empty($voucher->image_2)) {?>
-                                                <img src="<?php echo LARAVEL_IMAGE_PATH . $voucher->image_2; ?>" alt="<?php echo (!empty($voucher)) ? $voucher->name : ''; ?>" class="height100 img-responsive">
-                                            <?php } else {?>
-                                                 <img src="<?php echo IMGURL.'/coupons/voucher-image-2.png' ?>" alt="<?php echo (!empty($voucher)) ? $voucher->name : ''; ?>" class="height100 img-responsive">
-                                            <?php }?>
-                                        </a>
+                                <a class="lightbox" href="<?php echo (!empty($voucher->image_2)) ? LARAVEL_IMAGE_PATH . $voucher->image_2 : $default_coupon_image; ?>">
+                                <img src="<?php echo (!empty($voucher->image_2)) ? LARAVEL_IMAGE_PATH . $voucher->image_2 : $default_coupon_image; ?>" alt="<?php echo (!empty($voucher)) ? $voucher->name : ''; ?>" class="height100 img-responsive">
+                                </a>
                                 </div>
                                 <div class="col-sm-6 col-lg-4 col-xs-4 res-min-height-170 res-mt10">
-                                    <?php if (!empty($voucher->image_3)) {?>
-                                        <a class="lightbox" href="<?php echo LARAVEL_IMAGE_PATH . $voucher->image_3; ?>">
-                                        <?php } else {?>
-                                            <a class="lightbox" href="<?php echo IMGURL.'/coupons/voucher-image-3.png' ?>">
-                                            <?php }?>
-                                            <?php if (!empty($voucher->image_3)) {?>
-                                                <img src="<?php echo LARAVEL_IMAGE_PATH . $voucher->image_3; ?>" alt="<?php echo (!empty($voucher)) ? $voucher->name : ''; ?>" class="height100 img-responsive">
-                                            <?php } else {?>
-                                                <img src="<?php echo IMGURL.'/coupons/voucher-image-3.png'; ?>" alt="<?php echo (!empty($voucher)) ? $voucher->name : ''; ?>" class="height100 img-responsive">
-                                            <?php }?>
-                                        </a>
+                                <a class="lightbox" href="<?php echo (!empty($voucher->image_3)) ? LARAVEL_IMAGE_PATH.$voucher->image_3 : $default_coupon_image; ?>">
+                                <img src="<?php echo (!empty($voucher->image_3)) ? LARAVEL_IMAGE_PATH . $voucher->image_3 : $default_coupon_image; ?>" alt="<?php echo (!empty($voucher)) ? $voucher->name :''; ?>" class="height100 img-responsive">
+                                </a>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12"> 
+            <div class="card">
+                <div class="card-content">
+                    <div class="voucher-info-content">
+                        <h4 class="font-12 text-uppercase">Description</h4>
+                    </div>
+                    <!-- <div class="voucher-info-content"> -->
+                    <p class="lp1 theme-grey-color mt10">
+                        <?php echo (isset($voucher->description)) ? $voucher->description : 'No Found.'; ?>
+                    </p>
+                    <!-- </div> -->
                 </div>
             </div>
         </div>
@@ -133,13 +121,13 @@
                     </div>
                 </div>
                 <div class="col-md-6 col-xs-12 res-mt10 deal-details-inner">
-                    <?php echo form_open(base_url('cart/add'), array('id' => "add_to_cart")); ?>  <div class="card m0">
+                   <div class="card m0">
                         <div class="card-content">
                             <div class="row">
                                 <div class="col-md-5 col-xs-6 mtb10">
                                     <div class="qty-container">
-                                        <?php if ($count_coupons > 0) {
-    ?>
+                                        <?php if ($count_coupons > 0) {?>
+                                        <?php if ($this->aauth->is_loggedin()){ echo form_open(BASEURL.'cart/add'); } ?>
                                             <span class="no-of-persons"><img  alt='No of Persons' src="<?php echo IMGURL.'/coupons/no-of-persons.png' ?>" />&nbsp; No of Coupons
                                             </span>
                                             <span class="dec p0"><i class="hp-icons icon">remove_circle</i></span>
@@ -164,11 +152,9 @@
                                             <span class="regular-price"><span class="currency-symbol">₹</span><span class="line-through"><?php echo number_format($voucher->price, 0, '', ','); ?></span> | </span>
                                             <?php }?>
                                             <span class="special-price theme-purple-color font-20">
-                                                <span class="currency-symbol"> ₹</span><?php
-                                                    if (!empty($voucher)) {
-                                                    echo (!empty($voucher->offer_price)) ? number_format($voucher->offer_price, 0, '', ',') : number_format($voucher->price, 0, '', ',');
-                                                    }
-                                                    ?>
+                                            <span class="currency-symbol"> ₹</span>
+                                            <?php echo (!empty($voucher) && !empty($voucher->offer_price)) ? number_format($voucher->offer_price,0,'',','):number_format($voucher->price,0,'',',');
+                                            ?>
                                             </span>
                                     </p>
                                 </div>
@@ -177,9 +163,8 @@
                                      $today = strtotime(date('d-m-Y'));
                                      if (strtotime($voucher->valid_to) > $today) { ?>
                                         <?php if (!empty($this->userId)) {?>
-                                            <?php //$purchaseVoucher = $this->order_model->getAllPurchasedVouchers();
-                                            //if (!empty($purchaseVoucher) && !in_array($voucher->id, $purchaseVoucher)) {?><input type="submit" class="btn addtocart full-width btn-round buy-now-button" value="Buy Now">
-                                            <input type="hidden" id="base_url" value="<?php echo base_url() ?>">
+                                            <input type="submit" class="btn full-width btn-round buy-now-button" value="Buy Now">
+                                             <?php echo form_close(); ?> 
                                             <?php //} else { echo " Sorry, You have already purchased."; } ?>
                                         <?php } else {?>
                                             <a href="<?php echo base_url('login'); ?>">
@@ -213,7 +198,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 cashback-saving">
+                <div class="col-md-2 cashback-saving">
                     <div class="card">
                         <div class="card-content">
                             <p class="pull-left saving-title">
@@ -222,18 +207,21 @@
                                 </span>
                                 <br><small>on this product</small>
                             </p>
-                            <p class="pull-right cashback-title">
+                           <span class="pull-left save-amount">
+                           <span class="currency-symbol"> ₹</span>50
+                           </span> 
+                       </div>
+                    </div>
+                </div>
+                <div class="col-md-2 cashback-saving">
+                    <div class="card">
+                        <div class="card-content">
+                         <p class="pull-right cashback-title">
                             <span class="pull-right">
                                HappyCash 
                             </span>
                             <br><small>on this product</small> 
                            </p>
-                           <br>
-                           <br>
-                           <br>
-                           <span class="pull-left save-amount">
-                           <span class="currency-symbol"> ₹</span>50
-                           </span> 
                            <span class="pull-right cashback-amount">
                            <span class="currency-symbol"> ₹</span>20
                            </span>
@@ -308,7 +296,7 @@
                         <div class="col-md-3">
                             <!-- <div class="card"> -->
                                 <div class="hp_grid mt20">
-                                    <div class="hp-coupon-item hp-coupon-item--height2 full-width">
+                                    <div class="hp-coupon-item full-width">
                                         <article class="coupon-container">
                                             <div class="hp-coupon-item-details">
                                                 <div class="coupon-image">
@@ -416,7 +404,7 @@
                         <div class="col-md-3">
                             <!-- <div class="card"> -->
                                 <div class="hp_grid mt20">
-                                    <div class="hp-coupon-item hp-coupon-item--height2 full-width">
+                                    <div class="hp-coupon-item full-width">
                                         <article class="coupon-container">
                                             <div class="hp-coupon-item-details">
                                                 <div class="coupon-image">

@@ -24,10 +24,10 @@
     <a href="#info" data-toggle="tab">Basic Information</a>
 </li>
 <li>
-    <a href="#wallet" data-toggle="tab">Wallet</a>
+    <a href="#wallet" data-toggle="tab">Transaction History</a>
 </li>
 <li>
-    <a href = "#orders" data-toggle = "tab">Orders</a>
+    <a href = "#orders" data-toggle = "tab">My Orders</a>
 </li>
 <li>
     <a href = "#change_password" data-toggle = "tab">Change Password</a>
@@ -426,7 +426,7 @@ foreach ($designation as $key => $value) {?>
     <div class="tab-content">
         <div class="tab-pane active" id="add">
             <div class="card-header">
-                <h4 class="header-title display-inline-block">Wallet Transactions</h4>
+                <h4 class="header-title display-inline-block">Transactions History</h4>
                 <div class="card-extra text-right pull-right" >
                     <button type="button" class="btn btn-yellow btn-round" data-target="#_load_money_popup" data-toggle="modal">Load Money</button>
                     <button type="button" class="btn btn-yellow btn-round" data-target="#_send_money_popup" data-toggle="modal">Send Money</button>
@@ -448,6 +448,7 @@ foreach ($designation as $key => $value) {?>
                             </tr>
                         </thead>
                         <tbody>
+                            
                             <?php $i = 1;foreach ($customer_transactions as $key => $value): ?>
                             <tr>
                                 <td><?php echo isset($i) ? $i : ''; ?></td>
@@ -466,7 +467,7 @@ foreach ($designation as $key => $value) {?>
                                 <td><?php echo isset($value->end_balance) ? round($value->end_balance) : ''; ?></td>
                                 <td><?php echo isset($value->status) ? $value->status : ''; ?></td>
                             </tr>
-                                <?php $i++;endforeach;?>
+                                <?php $i++;endforeach; ?>
                         </tbody>
                     </table>
                 <?php else: ?>

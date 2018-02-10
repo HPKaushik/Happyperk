@@ -67,6 +67,7 @@ background-color: #e4e4e4;
 <script>
     var map;
     var center;
+    var marker;
         function initMap() {
             var list='';
             map = new google.maps.Map(document.getElementById('map'), {
@@ -90,13 +91,10 @@ background-color: #e4e4e4;
                 var markers = [
                     ['<?php echo $inf->address; ?>', <?php echo $inf->latitude; ?>, <?php echo $inf->longitude; ?>]
                 ];
-
-
-
                 var position = new google.maps.LatLng(<?php echo $inf->latitude; ?>, <?php echo $inf->longitude; ?>);
                 bounds.extend(position);
                 
-                var marker = new google.maps.Marker({
+                marker = new google.maps.Marker({
                 position: position,
                 map: map,
                 title: '<?php echo $inf->address; ?>'
@@ -106,8 +104,6 @@ background-color: #e4e4e4;
                 // Allow each marker to have an info window
                 google.maps.event.addListener(marker, 'click', (function (marker, i) {
                     return function () {
-                        infoWindow.setContent('<?php echo $inf->address; ?>');
-                        infoWindow.open(map, marker);
                     }
                 })(marker, i)); 
 
@@ -116,33 +112,28 @@ background-color: #e4e4e4;
                                   list +=  '<li><span><a href="javascript:void(0)" class="click_loc" data-lat="<?php echo $inf->latitude; ?>" data-long="<?php echo $inf->longitude; ?>"><?php echo $inf->address; ?></a></span></li>';
                     i++;
             <?php } ?>
-                       
-                    
-                    
               $('#no_of_location').html('<b><?php echo count($brandsloc); ?></b>');
               $('#store_location ul').html(list);
         <?php } ?>
         $('.click_loc').click(function () {
+                initMap();
                 $('.click_loc').removeClass('active');
                 $('#store_location ul li').removeClass('active');
                 $(this).parent().parent('li').addClass('active');
                 var location_val = $(this).html();
-                var lat = $(this).data('lat');
-                var long = $(this).data('long');
+                // init as new markrer 
                 marker = new google.maps.Marker({
-                    position: new google.maps.LatLng(lat,long),
+                    position:  new google.maps.LatLng($(this).data('lat'),$(this).data('long')),
                     map: map,
                     title: location_val,
-                    icon: {
-                        url: "img/img.png",
-                        scaledSize: new google.maps.Size(32, 32) // pixels
-                    }
-                });
-                new google.maps.event.trigger( marker, 'click' );
+                    icon: 'http://www.googlemapsmarkers.com/v1/009900/'
+                }); 
+                // Add animation 
+                marker.setAnimation(google.maps.Animation.BOUNCE);
             });
         }
 
-        $("#RedeemlocationModal").on("shown.bs.modal", function () {
+        $("#RedeemlocationModal ").on("shown.bs.modal", function () {
             initMap();
         });
         jQuery.expr[':'].contains = function(a, i, m) {
@@ -155,6 +146,7 @@ background-color: #e4e4e4;
         function goBack() {
             window.history.back();
         }
+
         $(window).load(function () {
             // Animate loader off screen
             $("#loading_page").fadeOut("slow");

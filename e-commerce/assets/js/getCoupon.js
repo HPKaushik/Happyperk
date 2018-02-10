@@ -63,23 +63,23 @@ $(function () {
 
     /* Add to cart */
 
-    $('.addtocart').on('click', function (e) {
-        var data = $('.deal-details-inner :input').serialize();
-        base_url = $('#base_url').val();
-        $.ajax({
-            url: base_url + 'cart/add',
-            type: 'POST',
-            data: data,
-            dataType: 'json',
-            success: function (res) {
-                if (res.success == "1") {
-                    location.href = base_url + res.redirectUrl;
-                } else {
-                    console.log('failure');
-                }
-            },
-        });
+    // $('.addtocart').on('click', function (e) {
+    //     var data = $('.deal-details-inner :input').serialize();
+    //     base_url = $('#base_url').val();
+    //     $.ajax({
+    //         url: base_url + 'cart/add',
+    //         type: 'POST',
+    //         data: data,
+    //         dataType: 'json',
+    //         success: function (res) {
+    //             if (res.success == "1") {
+    //                 location.href = base_url + res.redirectUrl;
+    //             } else {
+    //                 console.log('failure');
+    //             }
+    //         },
+    //     });
 
-        return false;
-    });
+    //     return false;
+    // });
 });

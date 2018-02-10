@@ -1,16 +1,13 @@
-	<?php
+<?php
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Front_Buy extends Front_Controller {
 
 	public function __construct() {
-
 		parent::__construct();
-		if (get_session_var('employee_loggedin') != '') {
-			redirect(base_url());
-		}
-		$this->load->library('cart'	);
+		if (!$this->aauth->is_loggedin()){ redirect(); }
+		$this->load->library('cart');
 		$this->load->model(array('order_model', 'vouchers_model', 'employee_model', 'email_model', 'home_model'));
 	}
 
@@ -31,7 +28,7 @@ class Front_Buy extends Front_Controller {
 		$transaction_id ='';
 
 		/* get wallet balance from employee Tables */
-		$employee_wallet_balance = $this->transaction->getEmployeeWalletBalance($this->employeeId);
+		// $employee_wallet_balance = $this->transaction->getEmployeeWalletBalance($this->employeeId);
 		// $employee_cashbank_balance = $this->transaction->getEmployeeCashBack($this->employeeId);
 
 		// $employeeTotalBalance = (($employee_wallet_balance > 0) ? $employee_wallet_balance : 0) + (($employee_cashbank_balance > 0) ? $employee_cashbank_balance : 0);
@@ -41,8 +38,8 @@ class Front_Buy extends Front_Controller {
 			(count($cart_items) <= 0) ? redirect('home') : '';
 			
 			// Create order
-			$order_id = $this->order->doOrder($this->userId, $this->location_id, $this->USER_DETAILS['email'], $this->USER_DETAILS['phone'], $total_amount, $sub_total_amount);
-			 $this->session->set_userdata('order_id',$order_id);
+			// $order_id = $this->order->doOrder($this->userId, $this->location_id, $this->USER_DETAILS['email'], $this->USER_DETAILS['phone'], $total_amount, $sub_total_amount);
+			//  $this->session->set_userdata('order_id',$order_id);
 
 			// Create transaction
 			$addTransaction = $this->transaction->doEmployeeTransaction('', PURCHASED, $this->employeeId, '', $order_id, $total_amount, 'Purchased product');
@@ -240,7 +237,7 @@ class Front_Buy extends Front_Controller {
 		$this->cart->destroy();
 		$this->ordersuccess_send_mail();
 		$this->template->write('title', 'HappyPerks');
-		$this->template->write_view('content', 'frontend/order_success', isset($data) ? $data : NULL);
+		$this->template->write_view('content', 'orders/success', isset($data) ? $data : NULL);
 		$this->template->render();
 	}
 
@@ -250,7 +247,6 @@ class Front_Buy extends Front_Controller {
 	function ordersuccess_send_mail() {
 		$email  = $this->USER_DETAILS['email'];
 		$template = (get_session_var('is_recharge')!='' && $this->session->set_userdata('is_recharge') == true) ?  5 : 6 ;
-//		$template = 7 ;
 		$order_id = get_session_var('order_id');
 		return $this->email_model->sendMail($email, 'naresh',$template, NULL,get_session_var('order_id'));
 	}

@@ -5,7 +5,6 @@ class Front_Brands extends Front_Controller {
 
 	function __construct() {
 		parent::__construct();
-		$this->loggedUser = $this->session->userdata('employeed_logged_in');
 		$this->template->set_template('common');
 		$this->template->write('meta_keywords', '');
 		$this->template->write('meta_desc', '');

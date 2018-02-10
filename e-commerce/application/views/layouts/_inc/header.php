@@ -14,13 +14,24 @@
                             <li>
                                 <a href="javascript:void(0)" data-toggle="modal" data-target="#itWorkModal"><span>How It Works</span></a>
                             </li>
-                            <li><a href="<?php echo BASEURL . 'brands'; ?>"><span>Brands</span></a></li>
+                            <?php /*<li><a href="<?php echo BASEURL . 'brands'; ?>"><span>Brands</span></a></li> */ ?>
+                            <li>
+                                <a data-toggle="modal" href="#" data-target="#LocationPickerModal">
+                                    <i class="hp-icons">location_on</i>
+                                    <span>
+                                    <?php if (get_session_var('user_location') != '') {
+                                        $selectedLocation = get_session_var('user_location');
+                                        echo (array_key_exists('name', $selectedLocation)) ? $selectedLocation['name'] : 'Location'; } else echo "Location"; 
+                                    ?>
+                                    </span>
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </div>
             </div>
             <div class="col-lg-3 col-md-2 col-xs-4">
-                <div class="hp-logo-container text-center">
+                <div class="hp-logo-container text-center mt15">
                 	   <?php 
                 	   //if user logged in
                 	   if (isset($company_logo) && !empty($company_logo)) { ?>
@@ -51,7 +62,7 @@
 	                                <?php echo form_close(); ?>
 	                            </div>
                             </li>
-                             <li>
+                            <?php /* <li>
                                 <a data-toggle="modal" href="#" data-target="#LocationPickerModal"><i class="hp-icons">location_on</i>
                                     <span>
                                         <?php
@@ -64,7 +75,7 @@
                                             ?>
                                     </span>
                                 </a>
-                            </li>
+                            </li> */ ?>
                             <?php if (get_session_var('logged_in')): ?>
                             <li>
                                 <?php if ($this->aauth->is_loggedin()) {?>

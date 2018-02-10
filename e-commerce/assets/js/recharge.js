@@ -7,11 +7,7 @@ $(document).ready(function () {
 
     // for mobile recharge
     $("#formMobileRecharge").validate({
-        submitHandler: function (form) {
-            //this runs when the form validated successfully
-            return mobileRecharge('formMobileRecharge');
-            return false; //submit it the form
-        },
+      
         rules: {
             mobilerechargeno: {required: true, phoneno: true},
             operatorname: {required: true},
@@ -43,22 +39,11 @@ $(document).ready(function () {
             }
         },
     });
-    function mobileRecharge(id)
-    {
-        var txtbaseurl = $('#txtbaseurl').val();
-        var form = $('#' + id);
-        $(form).attr('action', txtbaseurl + "cart/recharges");
-        return true;
-    }
-    //end
+        
 
     //for landline recharge
     $("#landlineRechargeForm").validate({
-        submitHandler: function (form) {
-            //this runs when the form validated successfully
-            return landlineRecharge('landlineRechargeForm');
-            return false; //submit it the form
-        },
+        
         rules: {
             mobilerechargeno: {required: true, phoneno: true},
             operatorname: {required: true},
@@ -94,22 +79,11 @@ $(document).ready(function () {
             }
         },
     });
-    function landlineRecharge(id)
-    {
-        var txtbaseurl = $('#txtbaseurl').val();
-        var form = $('#' + id);
-        $(form).attr('action', txtbaseurl + "cart/recharges");
-        return true;
-    }
-    //end
+    
 
     //for boardband recharge
     $("#broadbandRechargeForm").validate({
-        submitHandler: function (form) {
-            //this runs when the form validated successfully
-            return boardbandRecharge('broadbandRechargeForm');
-            return false; //submit it the form
-        },
+       
         rules: {
             mobilerechargeno: {required: true, phoneno: true},
             operatorname: {required: true},
@@ -148,22 +122,11 @@ $(document).ready(function () {
             }
         },
     });
-    function boardbandRecharge(id)
-    {
-        var txtbaseurl = $('#txtbaseurl').val();
-        var form = $('#' + id);
-        $(form).attr('action', txtbaseurl + "cart/recharges");
-        return true;
-    }
-    //end
+    
 
     //for datacard recharge
     $("#datacardRechargeForm").validate({
-        submitHandler: function (form) {
-            //this runs when the form validated successfully
-            return datacardRecharge('datacardRechargeForm');
-            return false; //submit it the form
-        },
+        
         rules: {
             mobilerechargeno: {required: true, phoneno: true},
             operatorname: {required: true},
@@ -196,22 +159,11 @@ $(document).ready(function () {
             }
         },
     });
-    function datacardRecharge(id)
-    {
-        var txtbaseurl = $('#txtbaseurl').val();
-        var form = $('#' + id);
-        $(form).attr('action', txtbaseurl + "cart/recharges");
-        return true;
-    }
-    //end
+    
 
     //for DTH recharge
     $("#dthRechargeForm").validate({
-        submitHandler: function (form) {
-            //this runs when the form validated successfully
-            return dthRecharge('dthRechargeForm');
-            return false; //submit it the form
-        },
+        
         rules: {
             subscribe_id: {required: true},
             operatorname: {required: true},
@@ -244,24 +196,13 @@ $(document).ready(function () {
             }
         },
     });
-    function dthRecharge(id)
-    {
-        var txtbaseurl = $('#txtbaseurl').val();
-        var form = $('#' + id);
-        $(form).attr('action', txtbaseurl + "cart/recharges");
-        return true;
-    }
-    //end
+    
 
     //for electricity bill recharge
     $("#electricityRechargeForm").validate({
-        submitHandler: function (form) {
-            //this runs when the form validated successfully
-            return electricityRecharge('electricityRechargeForm');
-            return false; //submit it the form
-        },
+        
         rules: {
-//            mobilerechargeno: {required: true, phoneno: true},
+//          mobilerechargeno: {required: true, phoneno: true},
             operatorname: {required: true},
             account_no: {required: true},
             confirm_account_no: {required: true, equalTo: "#account_no"},
@@ -298,22 +239,11 @@ $(document).ready(function () {
             }
         },
     });
-    function electricityRecharge(id)
-    {
-        var txtbaseurl = $('#txtbaseurl').val();
-        var form = $('#' + id);
-        $(form).attr('action', txtbaseurl + "cart/recharges");
-        return true;
-    }
-    //end
+    
 
     //for gas bill recharge
     $("#gasbillRechargeForm").validate({
-        submitHandler: function (form) {
-            //this runs when the form validated successfully
-            return gasbillRecharge('gasbillRechargeForm');
-            return false; //submit it the form
-        },
+        
         rules: {
             mobilerechargeno: {required: true, phoneno: true},
             operatorname: {required: true},
@@ -346,14 +276,7 @@ $(document).ready(function () {
             }
         },
     });
-    function gasbillRecharge(id)
-    {
-        var txtbaseurl = $('#txtbaseurl').val();
-        var form = $('#' + id);
-        $(form).attr('action', txtbaseurl + "cart/recharges");
-        return true;
-    }
-    //end
+   
 });
 $(function () {
     $("#mobilerechargeno").on('keyup', function (event) {

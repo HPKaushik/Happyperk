@@ -7,19 +7,7 @@ $("#loading_page").fadeOut("slow");
 ;
 });
 
-if ($('.hp-ans').length > 0) {
-$('.hp-ans').click(function ()
-{
-    $('.hp-ansCont').toggleClass('hide show'); //Adds 'a', removes 'b' and vice versa
-    if ($('.hp-ansCont.show').length > 0) {
-        $('.hp-ans').css('background-color', '#FFF');
-        $(".hp-ans img").attr("src", "<?php echo base_url(); ?>/assets/frontend/images/bell-purple.png");
-    } else {
-        $('.hp-ans').css('background-color', '#673AB7');
-        $(".hp-ans img").attr("src", "<?php echo base_url(); ?>/assets/frontend/images/bell-white.png");
-    }
-});
-}
+
 mobile_menu_visible = 0;
 $(document).ready(function () {
 $(document).on('click', '.navbar-toggle', function () {
