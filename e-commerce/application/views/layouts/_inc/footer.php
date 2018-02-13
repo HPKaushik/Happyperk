@@ -1,6 +1,6 @@
 <?php if (get_session_var('logged_in')): ?>
-<?php $announcements = $this->home_model->getAllAnnoucements();?>
-<?php if (isset($announcements) && count($announcements) > 0) { ?>
+<?php $announcements = $this->home_model->getAllUnreadAnnoucements();?>
+<?php if (isset($announcements)) { ?>
     <div class="hp-ansCnt hp-smooth">
         <span class="hp-ans hp-smooth scaleIt">
             <img src="<?php echo IMGURL.'/bell-white.png'; ?>" />
@@ -17,20 +17,17 @@
                         if ($i == $limit) break; ?>
                         <li class="unread pall20 mb10">
                             <div class="ann-title">
-                                <h5 class="mb5"><?php echo $announcement->name; ?></h5>
-                                <address class="text-uppercase mb5 font-11">By <?php echo get_user_name($announcement->user_id); ?></address>
+                                <h5 class="mb5"><?php echo (strlen($announcement->name) > 35) ? substr($announcement->name,0,35).'..': $announcement->name; ?></h5>
+                                <address class="text-uppercase mb5 font-11">By<?php echo get_user_name($announcement->user_id); ?></address>
                             </div>
                             <div class="ann-body">
-                                <p class="text-right font-11">
-                                   <?php echo $announcement->description; ?>
-                                </p>
+                                <p class="text-right font-11 justify"><?php echo substr($announcement->description,0,150); ?></p>
                             </div>
                             <div class="ann-footer">
-                                <p class="text-right font-11 m0"><?php echo $announcement->created_at ?> &nbsp;&nbsp;<b>UNREAD</b></p>
+                            <p class="text-right font-11 m0"><?php  echo date("d-m-Y",strtotime($announcement->created_at)) ?>&nbsp;&nbsp;<b>UNREAD</b></p>
                             </div>
                         </li> 
-                        <?php $i++;
-	               endforeach;?>
+                        <?php $i++; endforeach;?>
                 </ul>
                 <?php if (count($announcements) > 0) {?>
                     <a class="pull-right" href="<?php echo base_url('user/profile') ?>#announcement"><p>Read all here.</p> </a>

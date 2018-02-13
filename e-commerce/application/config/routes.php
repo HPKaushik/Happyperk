@@ -56,6 +56,7 @@ $route['translate_uri_dashes'] = FALSE;
 
 
 $route['home'] = 'Front_Home/index';
+$route['home/markasread'] = 'Front_Home/MarkAsReadAnnoucements';
 $route['change_location/(:num)'] = "Front_Home/change_location/$1";
 
 $route['api/get_operator_info'] = "api/ApiController/get_operator_info";

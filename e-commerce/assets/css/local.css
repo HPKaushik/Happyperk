@@ -184,9 +184,9 @@ body.index .header{
     border-left: 1px solid #fff;
 }
 .icon {
-    width: 20px;
+   /* width: 20px;
     height: 20px;
-    display: inline-block;
+    display: inline-block;*/
     /*vertical-align: top;*/
 }
 .tick-mark{
@@ -495,9 +495,12 @@ body.index .header{
     text-align: center;
     font-size: 10px;
 }
-.qty-container span {
+.qty-container button {
     padding: 2px;
     cursor: pointer;
+}
+.qty-container button:focus {
+outline: none;
 }
 .qty-container .dec, .qty-container .inc
 {
@@ -2197,9 +2200,10 @@ input[type=number]::-webkit-outer-spin-button {
     .sidebar{
         display: none;
     }
-    .res-max-height-340{
-        max-height: 340px;
+    .res-max-height-315{
+        max-height: 315px;
         overflow: hidden;
+        /*min-height: 315px;*/
     }
     .res-min-height-170{
         min-height: 160px
@@ -2207,6 +2211,9 @@ input[type=number]::-webkit-outer-spin-button {
     .res-max-height-170{
         max-height: 160px;
         overflow: hidden;
+    }
+    .res-min-height-315 {
+         min-height: 315px
     }
 
 }
@@ -2521,9 +2528,14 @@ background:white;
 .mtb10 {
     margin: 10px 0;
 }
-.voucher-info-content p
+.voucher-info-content div
  {
-    max-height: 61px;
+    max-height: 87px;
+    overflow: hidden;
+ }
+ .voucher-info-content p
+ {
+    max-height: 85px;
     overflow: hidden;
  }
  .wordwrap {
@@ -2552,3 +2564,6 @@ background:white;
     padding: 0px 6px;
     color: #673bb7;
 } 
+.justify {
+    text-align: justify;
+}

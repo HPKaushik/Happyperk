@@ -1,11 +1,11 @@
-<?php  $default_coupon_image = IMGURL.'/coupons/voucher-image-1.png'?>
+<?php  $default_coupon_image = IMGURL.'/coupons/default-coupon.png'?>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.css">
 <div class="content">
     <div class="container">
         <div class="row">
             <div class="col-xs-12">
                 <div class="col-lg-5 col-sm-6">
-                    <div class="card res-max-height-340">
+                    <div class="card res-max-height-315 res-min-height-315">
                         <div class="col-xs-12 col-sm-12 pall20">
                             <div class="img-circle col-lg-2 col-sm-2 col-xs-2">
                                 <?php if (!empty($voucher->brandlogo)) {?>
@@ -21,7 +21,7 @@
                         <div class="col-xs-12 col-sm-12">
                             <div class="col-xs-12">
                                 <ul class="nav text-uppercase">
-                                    <li class="display-inline-block">About <b><?php echo (isset($voucher->brandname)) ? $voucher->brandname :''; ?></b></li>
+                                    <li class="display-inline-block">About  <b><?php echo (isset($voucher->brandname)) ? $voucher->brandname :''; ?></b></li>
                                     <?php
                                     if (!empty($voucher->cashback_mode)) {
                                     $cbackamount = ($voucher->cashback_mode == 0) ? (!empty($voucher->offer_price)) ? ($voucher->offer_price * $voucher->cashback) : ($voucher->price * $voucher->cashback) : $voucher->cashback;
@@ -58,10 +58,10 @@
                     </div>
                 </div>
                 <div class="col-lg-7 col-sm-6 col-xs-12">
-                    <div class="card res-max-height-340 no-background">
+                    <div class="card res-max-height-315 res-min-height-315 no-background">
                         <div class="hp-gallery">
                             <div class="row">
-                                <div class="col-sm-12 col-lg-8 col-xs-8 height100 res-max-height-340" >
+                                <div class=" background-white col-sm-12 col-lg-8 col-xs-8 height100 res-max-height-315 res-min-height-315 " >
                                 <a class="lightbox" href="<?php echo (!empty($voucher->image_1)) ? LARAVEL_IMAGE_PATH . $voucher->image_1 : $default_coupon_image; ?>">
                                 <span class="content-top discount deal background-white theme-purple-color">
                                 <?php $discount=(($voucher->price-$voucher->offer_price) / $voucher->price)*100;
@@ -70,12 +70,12 @@
                                 <img src="<?php echo (!empty($voucher->image_1)) ? LARAVEL_IMAGE_PATH . $voucher->image_1 : $default_coupon_image; ?>" alt="<?php echo (!empty($voucher)) ? $voucher->name : ''; ?>" class="height100 img-responsive">
                                 </a>
                                 </div>
-                                <div class="col-sm-6 col-lg-4 col-xs-4 res-max-height-170 res-min-height-170 mb5 res-mt10">
+                                <div class="p0 background-white col-sm-6 col-lg-4 col-xs-4 res-max-height-170 res-min-height-170 mb5 res-mt10">
                                 <a class="lightbox" href="<?php echo (!empty($voucher->image_2)) ? LARAVEL_IMAGE_PATH . $voucher->image_2 : $default_coupon_image; ?>">
                                 <img src="<?php echo (!empty($voucher->image_2)) ? LARAVEL_IMAGE_PATH . $voucher->image_2 : $default_coupon_image; ?>" alt="<?php echo (!empty($voucher)) ? $voucher->name : ''; ?>" class="height100 img-responsive">
                                 </a>
                                 </div>
-                                <div class="col-sm-6 col-lg-4 col-xs-4 res-min-height-170 res-mt10">
+                                <div class="p0 background-white col-sm-6 col-lg-4 col-xs-4 res-min-height-170 res-mt10">
                                 <a class="lightbox" href="<?php echo (!empty($voucher->image_3)) ? LARAVEL_IMAGE_PATH.$voucher->image_3 : $default_coupon_image; ?>">
                                 <img src="<?php echo (!empty($voucher->image_3)) ? LARAVEL_IMAGE_PATH . $voucher->image_3 : $default_coupon_image; ?>" alt="<?php echo (!empty($voucher)) ? $voucher->name :''; ?>" class="height100 img-responsive">
                                 </a>
@@ -87,65 +87,22 @@
             </div>
         </div>
         <div>
-        <div class="col-md-8"> 
-            <div class="card">
-                <div class="card-content">
-                    <div class="voucher-info-content">
-                        <h4 class="font-12 text-uppercase">Description</h4>
-                    </div>
-                    <!-- <div class="voucher-info-content"> -->
-                    <p class="lp1 theme-grey-color mt10">
-                        <?php echo (isset($voucher->description)) ? $voucher->description : 'No Found.'; ?>
-                    </p>
-                    <!-- </div> -->
-                </div>
-            </div>
-        </div>
-        <div class="col-md-2 cashback-saving">
-                    <div class="card">
-                        <div class="card-content">
-                            <p class="pull-left saving-title">
-                                <span>
-                                    Total Saving
-                                </span>
-                            </p>
-                           <span class="pull-left save-amount">
-                           <span class="currency-symbol"> ₹</span>50
-                           </span> 
-                       </div>
-                    </div>
-                </div>
-                <div class="col-md-2 cashback-saving">
-                    <div class="card">
-                        <div class="card-content">
-                         <p class="pull-right cashback-title">
-                            <span class="pull-right">
-                               HappyCash 
-                            </span>
-                           </p>
-                           <span class="pull-right cashback-amount">
-                           <span class="currency-symbol"> ₹</span>20
-                           </span>
-                       </div>
-                    </div>
-                </div>
-            </div>
-        <div class="row">
+    <div class="row">
             <div class="col-xs-12 ">
                 <div class="col-md-6 col-xs-12">
                     <div class="card m0">
                         <div class="card-content">
                             <div class="full-width mtb20">
-                                <span>Valid :</span><?php /* <!--<ul class="nav voucher-valid-days">
-<li class="img-circle" title="Available">S</li>
-<li class="img-circle" title="Available">M</li>
-<li class="img-circle" title="Available">T</li>
-<li class="img-circle" title="Available">W</li>
-<li class="img-circle" title="Available">T</li>
-<li class="img-circle background-grey" title="Not Available">F</li>
-<li class="img-circle background-grey" title="Not Available">S</li>
-</ul>--> */?>
-                                <span class="mlr10">From - <b><?php echo !empty($voucher->valid_from) ? date("d-m-Y", strtotime($voucher->valid_from)) : '0'; ?></b> to <b><?php echo !empty($voucher->valid_to) ? date("d-m-Y", strtotime($voucher->valid_to)) : '0'; ?></b></span>
+                                <span>Valid :</span><ul class="nav voucher-valid-days">
+                                        <li class="img-circle" title="Available">S</li>
+                                        <li class="img-circle" title="Available">M</li>
+                                        <li class="img-circle" title="Available">T</li>
+                                        <li class="img-circle" title="Available">W</li>
+                                        <li class="img-circle" title="Available">T</li>
+                                        <li class="img-circle background-grey" title="Not Available">F</li>
+                                        <li class="img-circle background-grey" title="Not Available">S</li>
+                                </ul>
+                                <span class="mlr10">Timings - <b><?php echo !empty($voucher->valid_from) ? date("H:m a", strtotime($voucher->valid_from)) : '0'; ?></b> to <b><?php echo !empty($voucher->valid_to) ? date("H:m a", strtotime($voucher->valid_to)) : '0'; ?></b></span>
                             </div>
                         </div>
                     </div>
@@ -158,9 +115,9 @@
                                     <div class="qty-container">
                                         <?php if ($count_coupons > 0) {?>
                                         <?php if ($this->aauth->is_loggedin()){ echo form_open(BASEURL.'cart/add'); } ?>
-                                            <span class="no-of-persons"><img  alt='No of Persons' src="<?php echo IMGURL.'/coupons/no-of-persons.png' ?>" />&nbsp; No of Coupons
+                                            <span class="no-of-persons"> Quantity :  
                                             </span>
-                                            <span class="dec p0"><i class="hp-icons icon">remove_circle</i></span>
+                                            <button type="button" class="dec p0 no-background no-border"><i class="hp-icons icon">remove_circle</i></button>
                                             <input type="text"  name="quantity" id="quantity" class="form-control" value="1" data-min="1" data-max="<?php if (!empty($voucher->usage_per_user) && $count_coupons > $voucher->usage_per_user) {
                                                 echo $voucher->usage_per_user;
                                                 } elseif (!empty($voucher->usage_limit) && $count_coupons > $voucher->usage_limit) {
@@ -169,7 +126,7 @@
                                                 echo $count_coupons;
                                                 }
                                                 ?>" readonly="">
-                                            <span class="inc"><i class="hp-icons icon">add_circle</i></span>
+                                            <button class="inc no-background no-border" type="button"><i class="hp-icons icon">add_circle</i></button>
                                             <input type="hidden" name="id" value="<?php echo (!empty($voucher->id)) ? $voucher->id : ''; ?>"/>
                                                <?php } else {?>
                                              <span class="no-of-persons"><img alt='Not avalible' src="<?php echo IMGURL.'/coupons/not-avalible.png' ?>" />&nbsp;  Coupon is not available </span>
@@ -210,20 +167,121 @@
                 </div>
             </div>
         </div>
-        <div class="row">
+
+        <div class="col-md-12"> 
+            <div class="card">
+                <div class="card-content p0">
+                <div class="tab-content m0">
+<div class="tab-pane active" id="info">
+    <ul class="nav nav-pills nav-pills-purple border-bottom-color m0">
+        <li class="active">
+            <a href="#basic1" class="active no-border-radius" data-toggle="tab" aria-expanded="false"><b class="text-uppercase">DESCRIPTION</b></a>
+        </li>
+        <li class="">
+            <a href="#basic2" class="no-border-radius" data-toggle="tab" aria-expanded="true"><b class="text-uppercase">How to use</b></a>
+        </li>
+        <li >
+            <a href="#basic3" class="no-border-radius" data-toggle="tab" aria-expanded="true"><b class="text-uppercase">Terms & Conditions</b></a>
+        </li>
+        <li>
+            <a href="#basic4" class="no-border-radius" data-toggle="tab" aria-expanded="true"><b class="text-uppercase">Cancellation Policy</b></a>
+        </li><li>
+            <a href="#basic5" class="no-border-radius" data-toggle="tab" aria-expanded="true"><b class="text-uppercase">Things to Remember</b></a>
+        </li>
+    </ul>
+    <div class="tab-content">
+        <!--Description-->
+        <div class="tab-pane active" id="basic1">
+            <div class="card-content">
+                <p><?php echo (!empty($voucher->description)) ?  $voucher->description: '';   ?></p>
+            </div>
+        </div>
+        <!--Description-->
+
+        <!-- How to use details-->
+        <div class="tab-pane" id="basic2">
+            <div class="card-content">
+               <div> 
+                   <li>Easy and quick to implement natively in Shopify or using apps.</li>
+                   <li>Easy to track with our new Discounts Report.</li>
+                   <li>Increased customer acquisition.</li>
+                   <li>Increased conversions.</li>
+                   <li>Increased customer loyalty.</li>
+               </div> 
+            </div>
+        </div>
+        <!-- How to use details-->
+
+        <!-- Terms and condition details-->
+        <div class="tab-pane" id="basic3">
+            <div class="card-content">
+                <?php echo (!empty($voucher->terms)) ? strip_tags($voucher->terms,"<li>") : "No found."; ?>
+            </div>
+        </div>
+        <div class="tab-pane" id="basic4">
+            <div class="card-content">
+                <?php echo (!empty($voucher->cancellation_policy)) ? strip_tags($voucher->cancellation_policy,"<li>") : "No found."; ?>
+            </div>
+        </div>
+        <!-- Terms and condition details-->
+        <!-- things to remember details-->
+        <div class="tab-pane" id="basic5">
+            <div class="card-content">
+                <?php echo (!empty($voucher->things_to_remember)) ? strip_tags($voucher->things_to_remember,"<li>") : "No found."; ?>
+            </div>
+        </div>
+        <!-- things to remember details-->
+    </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<?php /*<div class="col-md-2 cashback-saving hide ">
+<div class="card">
+<div class="card-content">
+<p class="pull-left saving-title">
+<span>
+Total Saving
+</span>
+</p>
+<span class="pull-left save-amount">
+<span class="currency-symbol"> ₹</span>50
+</span> 
+</div>
+</div>
+</div>
+<div class="col-md-2 cashback-saving hide">
+<div class="card">
+<div class="card-content">
+<p class="pull-right cashback-title">
+<span class="pull-right">
+HappyCash 
+</span>
+</p>
+<span class="pull-right cashback-amount">
+<span class="currency-symbol"> ₹</span>20
+</span>
+</div>
+</div>
+</div> 
+            <!-- </div> -->
+       
+        <div class="row hide">
             <div class="col-md-12"> 
                 <div class="col-md-8"> 
                     <div class="card">
                         <div class="card-content">
-                            <div class="voucher-info-content">
+                            <div class="voucher-info-content dynamic-modal-how-to-use"  >
                                 <h4 class="font-12 text-uppercase">How to use offer</h4>
-                            </div>
-                            <div class="voucher-info-content">
+                               <div> 
                                     <li>Easy and quick to implement natively in Shopify or using apps.</li>
                                     <li>Easy to track with our new Discounts Report.</li>
                                     <li>Increased customer acquisition.</li>
                                     <li>Increased conversions.</li>
                                     <li>Increased customer loyalty.</li>
+                               </div> 
+                               <a class="open-dynamic-modal" data-target="#OpenContentModal" data-cls="how-to-use" data-toggle="modal">Read more</a>
                             </div>
                         </div>
                     </div>
@@ -231,7 +289,7 @@
                 
             </div>
         </div>
-                <div class="row">
+        <div class="row hide">
             <div class="col-md-12">
                 <div class="col-md-4">
                     <div class="card">
@@ -240,9 +298,9 @@
                                 <h4 class="font-12 text-uppercase">Terms & Conditions </h4>
                             </div>
                             <div class="voucher-info-content dynamic-modal-terms ptb15">
-                                <p class="font-11 theme-grey-color">
-                                    <?php echo (!empty($voucher->terms)) ? $voucher->terms : "No found."; ?>
-                                </p>
+                                <div class="font-11 theme-grey-color">
+                                    <?php echo (!empty($voucher->terms)) ? strip_tags($voucher->terms,"<li>") : "No found."; ?>
+                                </div>
                                 <?php echo (!empty($voucher->terms))  ? '<a class="open-dynamic-modal" data-target="#OpenContentModal"  data-cls="terms" data-toggle="modal">Read more</a>' : '';?> 
                             </div>
                         </div>
@@ -255,9 +313,9 @@
                                 <h4 class="font-12 text-uppercase">Cancellation Policy </h4>
                             </div>
                             <div class="voucher-info-content dynamic-modal-policy ptb15">
-                                <p class="font-11 theme-grey-color">
-                                    <?php echo (!empty($voucher->cancellation_policy)) ? $voucher->cancellation_policy : "No found."; ?>
-                                </p>
+                                <div  class="font-11 theme-grey-color">
+                                    <?php echo (!empty($voucher->cancellation_policy)) ? strip_tags($voucher->cancellation_policy,"<li>") : "No found."; ?>
+                                </div>
                                 <?php echo (!empty($voucher->cancellation_policy))  ? '<a class="open-dynamic-modal" data-target="#OpenContentModal" data-cls="policy" data-toggle="modal">Read more</a>' : '';?> 
                             </div>
                         </div>
@@ -270,9 +328,9 @@
                                 <h4 class="font-12 text-uppercase">Points To Remember</h4>
                             </div>
                             <div class="voucher-info-content dynamic-modal-things ptb15">
-                                <p class="font-11 theme-grey-color">
-                                    <?php echo (!empty($voucher->things_to_remember)) ? $voucher->things_to_remember : "No found."; ?>
-                                </p>
+                                <div  class="font-11 theme-grey-color">
+                                    <?php echo (!empty($voucher->things_to_remember)) ? strip_tags($voucher->things_to_remember,"<li>") : "No found."; ?>
+                                </div>
                                  <?php echo (!empty($voucher->things_to_remember))  ? '<a class="open-dynamic-modal" data-target="#OpenContentModal" data-cls="things" data-toggle="modal">Read more</a>' : '';?>   
                                
                             </div>
@@ -282,7 +340,7 @@
                 </div>
             </div>
         </div>
-        
+        */?>
             <?php
             $same_brand_voucher = $this->vouchers_model->get_voucher_of_same_brand($voucher->brandid, $voucher->id);
             if (isset($same_brand_voucher) && count($same_brand_voucher) > 1) {
@@ -291,7 +349,7 @@
              <div class="card m0">
                <div class="card-content">
                   <div class="full-width mtb20">
-                    <h3> Coupons from same brand   </h3>
+                    <h4 class="header-title m-l-20 mt20">Coupons from same brand</h4>
                     <div class="col-md-12">
                     <?php foreach ($same_brand_voucher as $brandvoucher) {?>
                         <div class="col-md-3">
@@ -305,7 +363,7 @@
                                                         <?php if (!empty($brandvoucher->image_1)) {?>
                                                             <img src="<?php echo LARAVEL_IMAGE_PATH . $brandvoucher->image_1; ?>" class="" alt="Image" />
                                                         <?php } else {?>
-                                                           <img src="<?php echo IMGURL.'/coupons/1.jpg'; ?>" class="" alt="Image" />
+                                                           <img src="<?php echo $default_coupon_image; ?>" class="" alt="Image" />
                                                         <?php }?>
                                                     </a>
                                                 </div>
@@ -399,7 +457,7 @@
             <div class="col-xs-12 "> <div class="card m0">
                 <div class="card-content">
                     <div class="full-width mtb20">
-                        <h3> Coupons from same category   </h3>
+                        <h4 class="header-title m-l-20 mt20">Coupons from same category </h4>
                 <div class="col-md-12">
                     <?php foreach ($same_category_voucher as $categoryvoucher) { ?>
                         <div class="col-md-3">
@@ -442,7 +500,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <a href="<?php echo BASEURL .  "vc/$categoryvoucher->id/".generateslug($categoryvoucher->name);?>">
+                                            <a href="<?php echo BASEURL .  "vc/".$categoryvoucher->id."/".generateslug($categoryvoucher->name);?>">
                                                 <div class="hp-coupon-popup">
                                                     <div class="coupon-popup-wrapper">
                                                         <div class="coupon-content">
@@ -512,6 +570,8 @@
                     <h4 class="modal-title text-center">col-sm-6 </h4>
                 </div>
                 <div class="modal-body">
+                </div>
+                <div class="modal-footer">
                 </div>
             </div>
         </div>

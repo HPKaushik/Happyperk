@@ -97,7 +97,7 @@ class Vouchers_model extends Front_Model {
 	public function get_voucher_of_same_category($brandid, $brandcategoryid, $voucherid) {
 		$query = $this->db->select('v.*,b.name as brandname,b.logo as brandlogo')->where('v.id !=' . $voucherid)
 			->join(BRANDS_TABLE . ' as b', 'b.id = v.brand', 'left  ')->where('b.category_id =' . $brandcategoryid)
-			->where('b.id !=' . $brandid)->limit(3)
+			->where('b.id !=' . $brandid)->limit(4)
 			->where('( DATE(NOW())< v.valid_from or DATE(NOW()) > v.valid_from or v.valid_from is null) and (v.valid_to >= DATE(NOW()) )')
 			->get($this->table . ' as v');
 		return $query->result();
@@ -108,7 +108,7 @@ class Vouchers_model extends Front_Model {
 			->where('v.id !=' . $voucherid)
 			->join(BRANDS_TABLE . ' as b', 'b.id = v.brand', 'left  ')
 			->where('( DATE(NOW())< v.valid_from or DATE(NOW()) > v.valid_from or v.valid_from is null) and (v.valid_to >= DATE(NOW()) )')
-			->limit(3)
+			->limit(4)
 			->get($this->table . ' as v');
 		return $query->result();
 	}

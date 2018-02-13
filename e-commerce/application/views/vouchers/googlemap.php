@@ -40,6 +40,8 @@ background-color: #e4e4e4;
                     </div>
                 </div>
             </div>
+            <div class="modal-footer">
+            </div>
         </div>
     </div>
 </div>
@@ -51,11 +53,11 @@ background-color: #e4e4e4;
         var cls =$(this).data('cls'); // class name
         // $("#OpenContentModal").on("shown.bs.modal", function () {
             var parent = $(this).parent().parent();
-            var content = parent.find('.dynamic-modal-'+cls+' p').html();
-            var header =  parent.find('.dynamic-modal-'+cls+' h4').contents().not($("dynamic-modal-"+cls).children()).text();;
+            var content = parent.find('.dynamic-modal-'+cls+' div').html();
+            var header =  parent.find('.dynamic-modal-'+cls+' h4').contents().not($("dynamic-modal-"+cls).children()).text();
             header = header.replace('keyboard_arrow_right','');
             $('#OpenContentModal .modal-header h4').text(header);
-            $('#OpenContentModal .modal-body').text(content);
+            $('#OpenContentModal .modal-body').html(content);
         // });
     });
 </script>

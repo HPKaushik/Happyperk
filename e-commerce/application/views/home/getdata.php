@@ -10,4 +10,5 @@ if($this->aauth->is_loggedin()) {
 //echo $this->db->last_query();
 //exit;
 $slides = $this->home_model->getHomePageSlider();
+
 ?>

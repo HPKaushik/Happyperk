@@ -38,4 +38,11 @@ class Front_Home extends Front_Controller {
 		}
 		redirect('');
 	}
+	public function MarkAsReadAnnoucements() {
+		$marked = $this->home_model->MarkAllAsReadAnnoucements($this->userId);			
+		if($marked)
+			echo json_encode(array('status'=>'1'));
+		else echo json_encode(array('status'=>'0'));
+		exit;
+	}
 }// 
