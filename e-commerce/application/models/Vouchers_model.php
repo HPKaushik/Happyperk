@@ -14,43 +14,46 @@ class Vouchers_model extends Front_Model {
 		$this->primary_key = VOUCHERS_TABLE . '.id';
 	}
 
-	public function get_vouchers($location_id, $limit = NULL, $lastID = NULL, $offset = NULL, $search_by_name = NULL) {
-		$this->db->select('distinct(v.id)');
-		if (!empty($location_id)) {
-//            $this->db->where(array('valmp.location_id' => $location_id));
-			//            $this->db->join(VOUCHER_AVAILABLE_LOCATIONS_MAP_TABLE . ' as valmp', 'valmp.voucher_id = v.id', 'left');
-		}
-		$this->db->where(array('v.status' => 1));
-		$this->db->where('( DATE(NOW())< v.valid_from or DATE(NOW()) > v.valid_from or v.valid_from is null) and (v.valid_to >= DATE(NOW()) )');
+	public function get_vouchers($location_id, $limit = NULL, $lastID = NULL, $offset = NULL) {
+		// Location based.	
+		// if (!empty($location_id)) {
+		//  $this->db->where(array('valmp.location_id' => $location_id));
+		//    $this->db->join(VOUCHER_AVAILABLE_LOCATIONS_MAP_TABLE . ' as valmp', 'valmp.voucher_id = v.id', 'left');
+		// }
+		
+		$this->db->select('distinct(voucher.id), voucher.*,brand.name as brandname,brand.id as brandid,brand.logo as brandlogo');
+		// $this->db->select('distinct(voucher.id), voucher.is_new,voucher.is_featured,voucher.sort_order,voucher.is_hot');
+		$this->db->join(BRANDS_TABLE . ' as brand', 'brand.id = voucher.brand', 'left');
+		$this->db->group_by('voucher.id');
 
-		$query = $this->db->get($this->table . ' as v');
-		if ($lastID != '') {
-			$where = 'nv.id  <' . $lastID;
-		}
-		if ($query->num_rows() > 0) {
-			$this->db->select('distinct(nv.id), nv.*,b.name as brandname,b.id as brandid,b.logo as brandlogo');
-			$this->db->join(BRANDS_TABLE . ' as b', 'b.id = nv.brand', 'left');
-			$this->db->group_by('nv.id');
-			$this->db->where_in('nv.id', $this->somename($query));
-			if ($lastID != '') {
-				$this->db->where('nv.id  <' . $lastID);
-			}
-			if ($search_by_name != '') {
-				$this->db->like('nv.name', $search_by_name);
-			}
+		// set limit number of record in result.
+		if($limit != ''  ||  $offset != '' )
 			$this->db->limit($limit, $offset);
-			$this->db->order_by('rand()');
-			$query = $this->db->get($this->table . ' as nv');
-			return $query->result();
-		}
-		return false;
+		// Enabled vouchers.
+		$this->db->where('voucher.status',1);
+		$this->db->order_by('voucher.is_new','DESC');
+		$this->db->order_by('voucher.is_hot','DESC');
+		$this->db->order_by('voucher.is_featured','DESC');
+		$this->db->order_by('voucher.sort_order','DESC');
+
+		// non-expired vouchers.
+		$this->db->where('( DATE(NOW())< voucher.valid_from or DATE(NOW()) > voucher.valid_from or voucher.valid_from is null) and (voucher.valid_to >= DATE(NOW()) )');
+		
+		// for randoming the result
+		$this->db->order_by('rand()');
+
+		$query = $this->db->get($this->table . ' as voucher');
+		if ($query->num_rows() > 0) 
+				// prx( $query->result());
+          	 return $query->result();
+		else return false;
 	}
 
-	function somename($query) {
-		return array_map(function ($_) {
-			return $_['id'];
-		}, $query->result_array());
-	}
+	// function somename($query) {
+	// 	return array_map(function ($_) {
+	// 		return $_['id'];
+	// 	}, $query->result_array());
+	// }
 
 	public function searchby($keyword='')
 	{
@@ -76,10 +79,14 @@ class Vouchers_model extends Front_Model {
 	public function get_voucher($vid) {
 		$query = $this->db->select('v.*,b.name as brandname,b.logo as brandlogo,b.id as brandid,b.description as branddescription,b.category_id as brandcategoryid')
 			->where('v.id =' . $vid)
+			// ->where("generateslug(v.name)='".$vname)
 //                ->where('( DATE(NOW())< v.valid_from or DATE(NOW()) > v.valid_from or v.valid_from is null) and (v.valid_to >= DATE(NOW()) )')
 			->join(BRANDS_TABLE . ' as b', 'b.id = v.brand', 'left')
 			->get($this->table . ' as v');
-		return $query->row();
+			if ($query->num_rows() > 0) 
+	    		 return $query->row();
+			else prx($this->db->last_query());
+			///return false;
 	}
 
 	public function getvendor_details($vid) {

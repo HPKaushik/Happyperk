@@ -30,9 +30,10 @@
                 <div class="alignVMiddle" style="margin: 0 auto;width: 280px;padding-top: 30vh;">
                     <?php if (isset($logo) && !empty($logo)) { ?>
                         <img  class="img-responsive" src="<?php echo CRUD_COMPANY_LOGO . '/' . $logo; ?>" alt="<?php echo isset($company_name) && !empty($company_name) ? $company_name : ''; ?>" width="128">
-                    <?php } else { ?>
+                    <?php } elseif(isset($company_name)) { ?>
                         <h3 class="text-center"><?php echo isset($company_name) && !empty($company_name) ? $company_name : ''; ?></h3>
-                    <?php } ?>
+                    <?php }else ?>
+                        <img  class="img-responsive" src="<?php echo HEADER_LOGO; ?>" alt="<?php echo SITE_NAME; ?>">
                     <div id="loginInfo" class="forgot-password text-center">
                         <?php if ($this->session->flashdata('msg') != '') echo $this->session->flashdata('msg'); ?>
                     </div>
@@ -65,6 +66,9 @@
                                     <button type="submit" class="btn sign-in-button lp1 full-width text-uppercase">Submit</button>
                                 </div>
                             </div>
+                        </div>
+                        <div class="forgot-password text-center">
+                            Go Back to <a href="<?php echo BASEURL; ?>" class="text-uppercase">HOME</a>
                         </div>
                         </form>
                     </div>

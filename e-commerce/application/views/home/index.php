@@ -11,7 +11,7 @@
             $random_num = 6;
             if (isset($vouchers) && !empty($vouchers) && count($vouchers) > 0) {
                 $itemID = $vouchers[0]->id;
-                shuffle($vouchers);
+                // shuffle($vouchers);
                 foreach ($vouchers as $voc) {
                     ?>
                 <div class="hp-coupon-item <?php echo ($c % 2 != 0) ? 'hp-coupon-item--height2' : ''; ?>">
@@ -25,6 +25,7 @@
                                     <img src="<?php echo IMGURL; ?>/coupons/1.jpg" class="" alt="<?php echo $voc->name; ?>" />
                                     <?php } ?>
                                 </a>
+                                <span class="text-uppercase"><?php echo (($voc->is_new == 1) ? "New" : ( ($voc->is_hot == 1) ? "Hot" : (($voc->is_featured == 1) ? "Featured" : '')));?></span>
                             </div>
                             <div class="coupon-details-btm">
                                 <div class="coupon-title-wrapper col-sm-7 no-padding">
@@ -53,7 +54,7 @@
 
                             </div>
                         </div>
-                        <a href='<?php echo BASEURL. "vouchers/$voc->id/view"; ?>'>
+                        <a href='<?php echo BASEURL. "vc/$voc->id/".generateslug($voc->name); ?>'>
                             <div class="hp-coupon-popup">
                                 <div class="coupon-popup-wrapper">
                                     <div class="coupon-content">

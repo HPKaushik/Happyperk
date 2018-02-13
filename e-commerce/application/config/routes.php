@@ -50,7 +50,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 $route['default_controller'] = 'Front_Home/index';
-$route['404_override'] = '';
+$route['404_override'] = 'Error404/error_404';
 $route['translate_uri_dashes'] = FALSE;
 
 
@@ -65,7 +65,7 @@ $route['api/get_recharge_plan'] = "api/ApiController/get_recharge_plan";
 $route['vouchers'] = "Front_Vouchers/index";
 $route['vouchers/getmore'] = "Front_Vouchers/getMoreVoucher";
 $route['vouchers/search'] = "Front_Vouchers/search";
-$route['vouchers/(:num)/view'] = "Front_Vouchers/get_coupon/$1";
+$route['vc/(:num)/(:any)'] = "Front_Vouchers/get_coupon/$1";
 
 //Users
 $route['login'] = "Front_User/login";

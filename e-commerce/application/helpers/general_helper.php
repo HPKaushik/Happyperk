@@ -135,4 +135,11 @@ function new_transaction_num() {
     }
     return $number . time();
 }
+
+
+
+function generateslug($string) {
+    return strtolower(url_title($string));
+    // return strtolower(urlencode($string));
+}
 ?>

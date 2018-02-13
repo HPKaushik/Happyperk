@@ -91,7 +91,7 @@ $printed = array();
                                         </div>
                                     </div>
                                     <?php if ( is_array($voc) && array_key_exists('id',$voc)) {  ?>
-                                    <a href='<?php echo base_url() . "vouchers/".  $voc['id']."/view"; ?>'>
+                                    <a href='<?php echo base_url() . "vc/".  $voc['id']."/".generateslug($voc['name']); ?>'>
                                         <div class="hp-coupon-popup">
                                             <div class="coupon-popup-wrapper">
                                                 <div class="coupon-content">

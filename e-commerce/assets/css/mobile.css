@@ -1,4 +1,14 @@
+.mobile-view-all {
+	display: none;
+}
+
 @media screen and (max-width: 768px){
+	.mobile-view-all {
+		display: block;
+	}
+	.mobile-view-all a {
+		text-decoration: none;
+	}
 	.hp-logo-container{
 		width: 155px;
 		margin: 0 0px 0 -18px;
@@ -10,11 +20,6 @@
 	.p10 {
 		margin: 10px 0px;
 	}
-	/*.hp_grid {
-		-moz-column-count: 1;
-		-webkit-column-count: 1;
-		column-count: 1;
-	}*/
 	.coupon-title-wrapper
 	{
 		max-height: 1.5em;
@@ -51,25 +56,69 @@
    		padding-top: 26vh;
  	}
  	.nav-pills-purple.border-bottom-color li {
-    /* border-bottom: 3px solid #329fd6; */
-    /* padding: 7px; */
-    	margin: 20px; 
+    	/*margin: 17px; */
 	}
 	.tab-pane .nav-pills-purple.border-bottom-color li a
 	{
-		    padding: 10px 10px;
+		padding: 6px 5px;
 	}
 	.tab-pane .nav-pills-purple.border-bottom-color li {
 		margin: 0px !important;
 	}
-	/*.main-container {
-		height: auto !important;
-	}*/
+	.nav-pills-purple.border-bottom-color li.active {
+		/*padding :2px !important;*/
+	}
+	.percentage-width li {
+		width: 19%;
+	}
+	.nav-pills-purple.border-bottom-color li.active {
+		border-bottom: 0px solid #329fd6;
+    	padding: 4px 1px;
+    	/*margin: 0;*/
+	}
+	.nav-pills>li>a {
+		min-width: 90px !important; 
+	}
+	.nav-pills-purple.border-bottom-color li {
+		padding : 0px !important;
+		margin-left: 0px;
+	    margin-right: 41px;
+	    margin-bottom: 20px;
+	}
+	.nav-pills-purple.border-bottom-color li a {
+		padding : 7px 5px;
+	}
+	span.pull-left.save-amount {
+		margin-top: -20px;
+	    float: right !important;
+	    font-size: 40px;
+	}
+	span.pull-right.cashback-amount {
+		margin-top: -20px;
+	    float: left !important;
+	    font-size: 40px;
+	}
 }
 @media screen and (max-width: 412px){
 	.modal-open .modal {
-		    max-width: 400px;
+		max-width: 400px;
     	display: none;
     	position: absolute;
 	}
+	ul.nav.nav-pills.nav-pills-purple.percentage-width.border-bottom-color.m0 {
+
+		max-height: 70px;
+	    line-height: 2em;
+	    overflow: hidden;
+	}
+	.nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover {
+		width: auto !important;
+	}
+
+}
+
+#recharge .nav-pills>li.active>a, #recharge .nav-pills>li.active>a:focus, #recharge .nav-pills>li.active>a:hover {
+    color: #673bb7 !important;
+	background-color:rgba(200, 200, 200, 0.2) !important; 
+    /*box-shadow: -2px 3px 13px -1px rgba(0, 0, 0, 0.4), 0 7px 10px -5px rgba(156, 39, 176, 0.4) !important;*/
 }

@@ -86,6 +86,20 @@ $template['login']['parser'] = 'parser';
 $template['login']['parser_method'] = 'parse';
 $template['login']['parse_template'] = TRUE;
 
+$template['error']['template'] = 'layouts/error';
+$template['error']['regions'] = array(
+   'header',
+   'title',
+   'meta_keywords',
+   'meta_desc',
+   'content',
+   'footer',
+   'footer_js',
+);
+$template['error']['parser'] = 'parser';
+$template['error']['parser_method'] = 'parse';
+$template['error']['parse_template'] = TRUE;
+
 
 
 

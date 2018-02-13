@@ -52,7 +52,7 @@
                                 <strong>Error ! </strong><?php echo $this->session->flashdata('error_msg'); ?>
                             </div>
                         <?php } ?>
-                        <?php echo form_open(BASEURL.'auth', array('id' => 'loginForm')); ?>
+                        <?php echo form_open(BASEURL.'auth', array('id' => 'loginForm','autocomplete'=>"off")); ?>
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">

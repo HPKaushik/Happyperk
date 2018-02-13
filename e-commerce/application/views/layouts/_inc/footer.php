@@ -44,43 +44,35 @@
 <div class="row m0">
          <!-- <div class="col-sm-1" ></div> -->
     <div class="col-sm-12">
-        <div class="col-sm-3">
             <div class="card">
-                <div class="card-header">
-                   <p class="text-center mt15"><img src="<?php echo IMGURL; ?>/best-price.png"></p>
-                   <h5 class="text-center"> Best Price</h5>
-                   <p>Happiness is guaranteed at Paytm. If we fall short of your expectations, give us a shout.</p>
+                <div class="col-sm-3">
+                    <div class="card-header">
+                       <p class="text-center mt15"><img src="<?php echo IMGURL; ?>/best-price.png"></p>
+                       <h5 class="text-center"> Best Price</h5>
+                       <p class="text-center">Happiness is guaranteed at Paytm. If we fall short of your expectations, give us a shout.</p>
+                    </div>
+                </div><div class="col-sm-3">
+                    <div class="card-header">
+                       <p class="text-center mt15"><img src="<?php echo IMGURL; ?>/secure-payment.png"></p>
+                       <h5 class="text-center"> Best Price</h5>
+                       <p class="text-center">Happiness is guaranteed at Paytm. If we fall short of your expectations, give us a shout.</p>
+                    </div>
+                </div><div class="col-sm-3">
+                    <div class="card-header">
+                       <p class="text-center mt15"><img src="<?php echo IMGURL; ?>/freedom-to-choose.png"></p>
+                       <h5 class="text-center"> Best Price</h5>
+                       <p class="text-center">Happiness is guaranteed at Paytm. If we fall short of your expectations, give us a shout.</p>
+                    </div>
+                </div><div class="col-sm-3">
+                    <div class="card-header">
+                       <p class="text-center mt15"><img src="<?php echo IMGURL; ?>/best-price.png"></p>
+                       <h5 class="text-center"> Best Price</h5>
+                       <p class="text-center">Happiness is guaranteed at Paytm. If we fall short of your expectations, give us a shout.</p>
+                    </div>
                 </div>
-            </div>
+
         </div>
-        <div class="col-sm-3">
-            <div class="card">
-                <div class="card-header">
-                    <p class="text-center mt15"><img src="<?php echo IMGURL; ?>/best-price.png"></p>
-                    <h5 class="text-center">100% Secured Payment</h5>
-                    <p>Happiness is guaranteed at Paytm. If we fall short of your expectations, give us a shout.</p>
-                </div>
             </div>
-        </div>
-        <div class="col-sm-3">
-            <div class="card">
-                <div class="card-header">
-                    <p class="text-center mt15"><img src="<?php echo IMGURL; ?>/best-price.png"></p>
-                   <h5 class="text-center"> Freedom to choose perks </h5>
-                   <p>Happiness is guaranteed at Paytm. If we fall short of your expectations, give us a shout.</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-3">
-            <div class="card">
-                <div class="card-header">
-                    <p class="text-center mt15"><img src="<?php echo IMGURL; ?>/best-price.png"></p>
-                  <h5 class="text-center"> Our Promise</h5>
-                  <p>Happiness is guaranteed at Paytm. If we fall short of your expectations, give us a shout.</p>
-                </div>
-            </div>
-        </div>
-    </div>
     <!-- <div class="col-sm-1"></div> -->
 </div>
     <div class="footer-container">

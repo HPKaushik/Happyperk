@@ -86,7 +86,8 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-12"> 
+        <div>
+        <div class="col-md-8"> 
             <div class="card">
                 <div class="card-content">
                     <div class="voucher-info-content">
@@ -100,6 +101,35 @@
                 </div>
             </div>
         </div>
+        <div class="col-md-2 cashback-saving">
+                    <div class="card">
+                        <div class="card-content">
+                            <p class="pull-left saving-title">
+                                <span>
+                                    Total Saving
+                                </span>
+                            </p>
+                           <span class="pull-left save-amount">
+                           <span class="currency-symbol"> ₹</span>50
+                           </span> 
+                       </div>
+                    </div>
+                </div>
+                <div class="col-md-2 cashback-saving">
+                    <div class="card">
+                        <div class="card-content">
+                         <p class="pull-right cashback-title">
+                            <span class="pull-right">
+                               HappyCash 
+                            </span>
+                           </p>
+                           <span class="pull-right cashback-amount">
+                           <span class="currency-symbol"> ₹</span>20
+                           </span>
+                       </div>
+                    </div>
+                </div>
+            </div>
         <div class="row">
             <div class="col-xs-12 ">
                 <div class="col-md-6 col-xs-12">
@@ -198,36 +228,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-2 cashback-saving">
-                    <div class="card">
-                        <div class="card-content">
-                            <p class="pull-left saving-title">
-                                <span>
-                                    Total Saving
-                                </span>
-                                <br><small>on this product</small>
-                            </p>
-                           <span class="pull-left save-amount">
-                           <span class="currency-symbol"> ₹</span>50
-                           </span> 
-                       </div>
-                    </div>
-                </div>
-                <div class="col-md-2 cashback-saving">
-                    <div class="card">
-                        <div class="card-content">
-                         <p class="pull-right cashback-title">
-                            <span class="pull-right">
-                               HappyCash 
-                            </span>
-                            <br><small>on this product</small> 
-                           </p>
-                           <span class="pull-right cashback-amount">
-                           <span class="currency-symbol"> ₹</span>20
-                           </span>
-                       </div>
-                    </div>
-                </div>
+                
             </div>
         </div>
                 <div class="row">
@@ -334,7 +335,7 @@
 
                                                 </div>
                                             </div>
-                                            <a href="<?php echo BASEURL . 'vouchers/' . $brandvoucher->id . '/view'; ?>">
+                                            <a href="<?php echo BASEURL .  "vc/$brandvoucher->id/".generateslug($brandvoucher->name); ?>">
                                                 <div class="hp-coupon-popup">
                                                     <div class="coupon-popup-wrapper">
                                                         <div class="coupon-content">
@@ -441,7 +442,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <a href="<?php echo BASEURL . 'vouchers/' . $categoryvoucher->id . '/view'; ?>">
+                                            <a href="<?php echo BASEURL .  "vc/$categoryvoucher->id/".generateslug($categoryvoucher->name);?>">
                                                 <div class="hp-coupon-popup">
                                                     <div class="coupon-popup-wrapper">
                                                         <div class="coupon-content">

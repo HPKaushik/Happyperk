@@ -37,6 +37,7 @@
                 </a>
             </li>
         </ul>
+        <p class="text-center mobile-view-all mt15" style=""> <a href="javascript:void(0);" >View all</a></p>
         <div class="tab-content form-margin0 active m0">
             <div class="tab-pane active" id="pill1">
                 <div class="card">

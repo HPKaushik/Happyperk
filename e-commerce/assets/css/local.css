@@ -1370,10 +1370,10 @@ input[type=number]::-webkit-outer-spin-button {
         box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(103, 59, 183, 0.44);*/
 }
 .nav-pills-purple.border-right-color li.active {
-    border-right: 3px solid #329fd6;
+    /*border-right: 3px solid #329fd6;*/
 }
 .nav-pills-purple.border-bottom-color li.active {
-    border-bottom: 3px solid #329fd6;
+    /*border-bottom: 3px solid #329fd6;*/
 }
 /*
 .nav-pills.nav-pills-danger>li.active>a,
@@ -2523,7 +2523,7 @@ background:white;
 }
 .voucher-info-content p
  {
-    max-height: 63px;
+    max-height: 61px;
     overflow: hidden;
  }
  .wordwrap {
@@ -2537,7 +2537,18 @@ background:white;
     margin: 0 auto;width: 280px;padding-top: 30vh;
  }
 
-.cashback-saving .save-amount ,.cashback-saving .cashback-amount{padding: 5px;font-size: -webkit-xxx-large;}
+.cashback-saving .save-amount ,.cashback-saving .cashback-amount{padding: 5px;font-size:x-large;}
 .cashback-amount { color: #58c55c } 
 .save-amount { color: #673bb7 } 
 .saving-title, .cashback-title { font-size: larger; }
+.header-block-right.pull-right input.form-control.valid.text-white {
+    width: 350px;
+}
+.hp-coupon-item-details .coupon-image span {
+    position: absolute;
+    top: 12px;
+    background: #ccc0e3;
+    width: auto;
+    padding: 0px 6px;
+    color: #673bb7;
+} 
