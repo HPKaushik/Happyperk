@@ -8,7 +8,7 @@ class Front_Vouchers extends Front_Controller {
 
 		parent::__construct();
 		$this->loggedUser = $this->aauth->is_loggedin();
-		$this->load->model(array('vouchers_model','brands_model','category_model','awards_model','home_model','brands_redeem_location_model'));
+		$this->load->model(array('vouchers_model','brands_model','category_model','awards_model','home_model','brands_redeem_location_model','vendor_model'));
 		// $this->load->model(array('vouchers_model', 'brands_redeem_location_model', 'home_model','awards_model'));
 	}
 
@@ -29,7 +29,7 @@ class Front_Vouchers extends Front_Controller {
 		$this->load->model('order_model');
 		$data['voucher'] = $this->vouchers_model->get_voucher($vid);
 		$data['count_coupons'] = $this->vouchers_model->get_avalible_coupon_count($vid);
-		$data['voucher_locations'] = $this->vouchers_model->get_voucher_brand_locations($vid); 
+		$data['brandsloc'] = $this->vouchers_model->get_voucher_brand_locations($vid); 
 		$data['googlemap'] = $this->load->view('vouchers/googlemap', isset($data) ? $data : NULL,true);
 		$this->template->add_js(JSPATH.'/getCoupon.js');
 		$this->template->write_view('content', 'vouchers/view', isset($data) ? $data : NULL);
@@ -46,10 +46,14 @@ class Front_Vouchers extends Front_Controller {
 	public function search() {
 		if ($this->input->post() != '') {
 			$post = escape_post_strings($this->input->post());
-			$name = $post['name'];
-			$data['vouchers'] = $this->vouchers_model->searchby($name);
+			$data['name'] = $post['name'];
+			$data['vouchers'] = $this->vouchers_model->searchby($data['name']);
 			$this->template->add_js(JSPATH.'/masonry.pkgd.min.js');
 			// $this->template->add_js(JSPATH.'/owl.carousel.min.js');
+			if ($this->input->is_ajax_request()) {
+				   echo json_encode($data['vouchers']);
+				   exit;
+			}
 			$this->template->add_js(JSPATH.'/home.js');
 			$this->template->write_view('content', 'vouchers/list', isset($data) ? $data : NULL);
 			$this->template->render();

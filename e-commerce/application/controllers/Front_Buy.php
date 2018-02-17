@@ -13,10 +13,11 @@ class Front_Buy extends Front_Controller {
 
 	/**
 	 * place order for Vouchers
-	 * @author Naresh
+	 * @author kaushik
 	 * Date 4-11-2017
-	 */
-	public function placeorder() {
+	 * Oxigen
+	
+	public function placeorder_oxignen() {
 		$total_amount = $this->cart->total();
 		$sub_total_amount = $total_amount;
 		$cashback_amount = 0;
@@ -27,7 +28,7 @@ class Front_Buy extends Front_Controller {
 		$trans_status ='';
 		$transaction_id ='';
 
-		/* get wallet balance from employee Tables */
+		/* get wallet balance from employee Tables * /
 		// $employee_wallet_balance = $this->transaction->getEmployeeWalletBalance($this->employeeId);
 		// $employee_cashbank_balance = $this->transaction->getEmployeeCashBack($this->employeeId);
 
@@ -52,9 +53,11 @@ class Front_Buy extends Front_Controller {
 				$master_prod_idz = $this->order_model->get_voucher_id_master_products($item['id']);
 				$vendor_id = $this->vouchers_model->getvendor_details($item['id']);
 				$cashback_amount = ($master_prod_idz && !empty($item['cashback_amount'])) ? $item['cashback_amount'] * $item['qty'] : 0;
-				$this->update_voucher_coupons($item['id'], $order_id, $item['qty'], $item['price'], $master_prod_idz->id, $vendor_id->vendor_id);
 			}
         
+			$this->update_voucher_coupons($item['id'], $order_id, $item['qty'], $item['price'], $master_prod_idz->id, $vendor_id->vendor_id);
+        	 /* Oxigien Parameters * /
+        	 
         	$param  = array(
         		'transid'=> new_transaction_num(),
         		'otp'	=> $otp,
@@ -62,8 +65,6 @@ class Front_Buy extends Front_Controller {
         		'amount' => $total_amount	
         		// 'amount' => ($total_amount * 100)	
         	 );
-			// in Oxigen.
-
 			$doPayment = $this->oxigenapi->do_payment_from_oxigen_wallet(PAYMENT_URL , $param);
 				if($doPayment!='') {
 					 $doPayment = json_decode($doPayment); 
@@ -114,26 +115,11 @@ class Front_Buy extends Front_Controller {
                                 exit;
                             } 
                         } 
-					// prx($doPayment);
-					// Update order
-					$this->session->set_flashdata('msg_success', 'Order placed successfully. Thank you.');
+						$this->session->set_flashdata('msg_success', 'Order placed successfully. Thank you.');
 				}
 
             } 
-			// Update transaction
-			
-			//Add Cashback.
-			// if ($cashback_amount > 0 && $status==1) {
-			// 	sleep(2);
-			// 	$generated_transaction_code = (!empty($transaction_id)) ? 'HPCB' . str_pad($transaction_id, 7, '0', STR_PAD_LEFT) : '';
-			// 	$employee_transaction_data['transaction_code'] = $generated_transaction_code;
-			// 	$employee_transaction_data['received_amount'] = $cashback_amount;
-			// 	$employee_transaction_data['credit_amount'] = $cashback_amount;
-			// 	$employee_transaction_data['description'] = 'Cashback  has been added';
-			// 	$added = $this->transaction->doUpdateEmployeeBalance($this->employeeId, 0, $cashback_amount, $employee_transaction_data, ADD_CASHBACK,'Completed.');
-			// 	($added) ? redirect('user/profile#wallet') : '';
-			// }
-		} else {
+			} else {
 			$remaining_payment_balance = $total_amount - $employee_wallet_balance;
 			echo "Amount to be paid: " . $remaining_payment_balance;
 			exit;
@@ -142,6 +128,121 @@ class Front_Buy extends Front_Controller {
 		redirect('cart/ordersuccess');
 	}
 
+	/**
+	 * place order for Vouchers
+	 * @author kaushik
+	 * Date 4-11-2017
+	 * No Oxigen
+	 * Rename it to placeorder_no_api if want with api and use above one by renaming to placeorder. 	 
+	 * /
+	public function placeorder() {
+		$total_amount = $this->cart->total();
+		$sub_total_amount = $total_amount;
+		$cashback_amount = 0;
+		$msg= '';
+        $status = 0;
+        $response = false;
+		$otp = $this->input->post('otp');
+		$trans_status ='';
+		$transaction_id ='';
+
+		/* get wallet balance from employee Tables * /
+		 $employee_wallet_balance = $this->transaction->getEmployeeWalletBalance($this->employeeId);
+		 $employee_cashbank_balance = $this->transaction->getEmployeeCashBack($this->employeeId);
+		 $employeeTotalBalance = (($employee_wallet_balance > 0) ? $employee_wallet_balance : 0) + (($employee_cashbank_balance > 0) ? $employee_cashbank_balance : 0);
+		if ($employee_wallet_balance >= $total_amount) {
+			$cart_items = $this->cart->contents();
+			(count($cart_items) <= 0) ? redirect('home') : '';
+			
+			// Create order
+			// $order_id = $this->order->doOrder($this->userId, $this->location_id, $this->USER_DETAILS['email'], $this->USER_DETAILS['phone'], $total_amount, $sub_total_amount);
+			//  $this->session->set_userdata('order_id',$order_id);
+
+			// Create transaction
+			$addTransaction = $this->transaction->doEmployeeTransaction('', PURCHASED, $this->employeeId, '', $order_id, $total_amount, 'Purchased product');
+			if($addTransaction){
+			// transaction id 
+			$transaction_id = get_session_var('transaction_id');
+                
+			// update voucher details.
+			foreach ($cart_items as $item) {
+				$master_prod_idz = $this->order_model->get_voucher_id_master_products($item['id']);
+				$vendor_id = $this->vouchers_model->getvendor_details($item['id']);
+				$cashback_amount = ($master_prod_idz && !empty($item['cashback_amount'])) ? $item['cashback_amount'] * $item['qty'] : 0;
+			}
+        
+			$this->update_voucher_coupons($item['id'], $order_id, $item['qty'], $item['price'], $master_prod_idz->id, $vendor_id->vendor_id);
+        	 /* Oxigien Parameters * /
+        	 
+        	// $param  = array(
+        	// 	'transid'=> new_transaction_num(),
+        	// 	'otp'	=> $otp,
+        	// 	'mobilenumber' => $this->USER_DETAILS['phone']	,
+        	// 	'amount' => $total_amount	
+        	// 	// 'amount' => ($total_amount * 100)	
+        	//  );
+			// $doPayment = $this->oxigenapi->do_payment_from_oxigen_wallet(PAYMENT_URL , $param);
+				// if($doPayment!='') {
+					 $doPayment = json_decode($doPayment); 
+					// if($doPayment->ResponseCode == 0) {
+     //                            // For HP-DB
+     //                            $updated_wallet_balance = $employee_wallet_balance  - $total_amount;
+     //                            $msg = 'Order placed successfully. Thank you.';
+     //                            $this->session->set_flashdata('msg_succ', $msg);
+     //                            $status = 1;
+     //                            $response = true;
+     //                }
+                    // else {
+                    //             // For HP-DB
+                    //           	$updated_wallet_balance = $employee_wallet_balance;
+                    //             if($doPayment->ResponseCode == 1027)  
+                    //                 $this->session->set_flashdata('msg_err', 'Something goes wrong. Please try again after some time.');
+                    //             else 
+                    //                 $this->session->set_flashdata('msg_err', $doPayment->ResponseMessage);
+                    // }
+					$prepareDataUpdate['updated_at'] = date('Y-m-d H:i:s');
+					$updated_voucher_order=$this->db->where('order_id',$order_id)->update(ORDER_VOUCHERS_MAP_TABLE,$prepareDataUpdate);
+					$prepareDataUpdate['oxigen_response'] = json_encode($doPayment);
+					$prepareDataUpdate['order_status_id'] = $status;
+					$updated_voucher_order=$this->db->where('order_id',$order_id)->update(ORDER_TABLE,$prepareDataUpdate);
+
+					// prx($updated_voucher_order);
+					if($updated_voucher_order) {
+                            if($status==1)  
+                                $trans_status = 'Completed';
+                            else  
+                            {
+                                $trans_status = 'Cancelled';
+                                // Rollback transation if recharge is not done in HP-DB. 
+                                $msg = "Order placement is failed. ";
+                                $RollbackTransaction=$this->transaction->doEmployeeTransaction('',LOAD_MONEY,$this->employeeId,'',$order_id,$total_amount,$msg,$trans_status);
+							
+                            }   
+                            // Update last transaction.
+                            $updated_etrans_tab=$this->db->where('id',$transaction_id)->update(EMPLOYEE_TRANSACTIONS_TABLE,array('status'=>$trans_status,'updated_at'=>date('Y-m-d H:i:s')));
+                            // Update wallet balance in HP-DB.    
+                            if ($updated_etrans_tab) {
+                                $update=$this->db->where('employee_id',$this->employeeId)->update(EMPLOYEE_TABLE,array('wallet_balance'=>$updated_wallet_balance,'updated_at'=>date('Y-m-d H:i:s')));
+							
+                            }                            
+                            else{
+                                $this->session->set_flashdata('msg_err', 'Something goes wrong. Please try again after some time.');
+                                echo "Error: " .  $this->db->_error_message();
+                                exit;
+                            } 
+                        } 
+						$this->session->set_flashdata('msg_success', 'Order placed successfully. Thank you.');
+				// }
+
+            } 
+			} else {
+			$remaining_payment_balance = $total_amount - $employee_wallet_balance;
+			echo "Amount to be paid: " . $remaining_payment_balance;
+			exit;
+		}
+		// $this->cart->destroy();
+		// redirect('cart/ordersuccess');
+	}
 	/**
 	 * { update_voucher_coupons }
 	 * @author     Kaushik
@@ -330,3 +431,17 @@ class Front_Buy extends Front_Controller {
 	// }
 
 }
+
+// Update transaction
+			
+			//Add Cashback.
+			// if ($cashback_amount > 0 && $status==1) {
+			// 	sleep(2);
+			// 	$generated_transaction_code = (!empty($transaction_id)) ? 'HPCB' . str_pad($transaction_id, 7, '0', STR_PAD_LEFT) : '';
+			// 	$employee_transaction_data['transaction_code'] = $generated_transaction_code;
+			// 	$employee_transaction_data['received_amount'] = $cashback_amount;
+			// 	$employee_transaction_data['credit_amount'] = $cashback_amount;
+			// 	$employee_transaction_data['description'] = 'Cashback  has been added';
+			// 	$added = $this->transaction->doUpdateEmployeeBalance($this->employeeId, 0, $cashback_amount, $employee_transaction_data, ADD_CASHBACK,'Completed.');
+			// 	($added) ? redirect('user/profile#wallet') : '';
+			// }

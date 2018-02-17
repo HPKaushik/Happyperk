@@ -1,21 +1,28 @@
 <?php  $default_coupon_image = IMGURL.'/coupons/default-coupon.png'?>
+<?php 
+// var_dump($voucher['vendor_id']);
+$valid_on_days = $this->vendor_model->get_valid_on_days($voucher->vendor_id);
+//prx($valid_on_days);
+?>
+
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.css">
 <div class="content">
     <div class="container">
         <div class="row">
             <div class="col-xs-12">
-                <div class="col-lg-5 col-sm-6">
-                    <div class="card res-max-height-315 res-min-height-315">
+                <div class="col-lg-4 col-sm-6">
+                    <div class="card res-max-height-285 res-min-height-285">
                         <div class="col-xs-12 col-sm-12 pall20">
-                            <div class="img-circle col-lg-2 col-sm-2 col-xs-2">
-                                <?php if (!empty($voucher->brandlogo)) {?>
+                            <div class="img-circle col-lg-2 col-sm-2 col-xs-2 hide">
+                                <?php /*if (!empty($voucher->brandlogo)) {?>
                                     <img src="<?php echo LARAVEL_IMAGE_PATH . $voucher->brandlogo; ?>" alt="<?php echo (!empty($voucher)) ? $voucher->brandname : ''; ?>" class="img-responsive" />
                                 <?php } else {?>
                                     <img src="<?php echo IMGURL.'/1.png' ?>" alt="<?php echo $voucher->brandname; ?>" class="img-responsive"/>
-                                <?php }?>
+                                <?php }*/?>
                             </div>
                             <div class="col-lg-10 col-sm-10 col-xs-10">
-                                <h1 class="text-capitalize font-16 wordwrap m0"><?php echo (!empty($voucher)) ? $voucher->name : ''; ?></h1>
+                                <h1 class="text-capitalize font-16 wordwrap m0"><?php echo (!empty($voucher->name)) ? $voucher->name : ''; ?></h1>
                             </div>
                         </div>
                         <div class="col-xs-12 col-sm-12">
@@ -36,48 +43,43 @@
                                 </p>
                             </div>
                         </div>
-                <?php $brandsloc = $this->brands_redeem_location_model->getResult('*',array('brand_id'=>$voucher->brandid)); 
-                        if(count($brandsloc) > 0)  {  ?>
+                <?php if(isset($brandsloc) && count($brandsloc) > 0)  {  ?>
                         <div class="col-md-12 col-xs-12 mtb15">
                             <h6 class="text-middle-line text-uppercase mtb15 lp1 theme-grey-color"><span>Redeem Locations</span></h6>
-                            <div class="col-md-6 col-sm-12 col-xs-6">
+                            <div class="p0 col-md-6 col-sm-12 col-xs-6">
                                 <img src="<?php echo IMGURL.'/coupons/map-placeholder.png' ?>" alt="" class="img-responsive" />
                             </div>
                             <div class="col-md-6 col-sm-12 res-ptb10 col-xs-6">
-                            
-                                <?php if(count($brandsloc) == 1)  { ?>
-                                <address class="font-11 m0"> <!--show only one location here-->
+                                <address class="m0 theme-grey-color redeem-sort-one">
+                                    <?php echo $brandsloc[0]->address; ?>
                                 </address>
-                                <?php } else  { ?>
-                                     Total available <b><?php echo count($brandsloc); ?></b> Redemption locations.   
-                                <?php } ?>
-                                <a href="javascript:void(0)" data-toggle="modal" data-target="#RedeemlocationModal" class="theme-color">View All Locations</a>
+                                <a href="javascript:void(0)" data-toggle="modal" data-target="#RedeemlocationModal" class="font-11 theme-color">View All Locations</a>
                             </div>
                         </div>
                     <?php } ?>
                     </div>
                 </div>
-                <div class="col-lg-7 col-sm-6 col-xs-12">
-                    <div class="card res-max-height-315 res-min-height-315 no-background">
+                <div class="col-lg-8 col-sm-6 col-xs-12">
+                    <div class="card res-max-height-285 res-min-height-285 no-background">
                         <div class="hp-gallery">
                             <div class="row">
-                                <div class=" background-white col-sm-12 col-lg-8 col-xs-8 height100 res-max-height-315 res-min-height-315 " >
+                                <div class=" background-white col-sm-12 col-lg-8 col-xs-8 height100 res-max-height-285 res-min-height-285 " >
                                 <a class="lightbox" href="<?php echo (!empty($voucher->image_1)) ? LARAVEL_IMAGE_PATH . $voucher->image_1 : $default_coupon_image; ?>">
                                 <span class="content-top discount deal background-white theme-purple-color">
                                 <?php $discount=(($voucher->price-$voucher->offer_price) / $voucher->price)*100;
-                                echo (!empty($discount)) ? number_format($discount, 0) . '% Off' : '';?>
+                                    echo (!empty($discount)) ? number_format($discount, 0) . '% Off' : '';?>
                                 </span>
-                                <img src="<?php echo (!empty($voucher->image_1)) ? LARAVEL_IMAGE_PATH . $voucher->image_1 : $default_coupon_image; ?>" alt="<?php echo (!empty($voucher)) ? $voucher->name : ''; ?>" class="height100 img-responsive">
+                                    <img src="<?php echo (!empty($voucher->image_1)) ? LARAVEL_IMAGE_PATH . $voucher->image_1 : $default_coupon_image; ?>" alt="<?php echo (!empty($voucher)) ? $voucher->name : ''; ?>" class="height100 img-responsive">
                                 </a>
                                 </div>
                                 <div class="p0 background-white col-sm-6 col-lg-4 col-xs-4 res-max-height-170 res-min-height-170 mb5 res-mt10">
                                 <a class="lightbox" href="<?php echo (!empty($voucher->image_2)) ? LARAVEL_IMAGE_PATH . $voucher->image_2 : $default_coupon_image; ?>">
-                                <img src="<?php echo (!empty($voucher->image_2)) ? LARAVEL_IMAGE_PATH . $voucher->image_2 : $default_coupon_image; ?>" alt="<?php echo (!empty($voucher)) ? $voucher->name : ''; ?>" class="height100 img-responsive">
+                                    <img src="<?php echo (!empty($voucher->image_2)) ? LARAVEL_IMAGE_PATH . $voucher->image_2 : $default_coupon_image; ?>" alt="<?php echo (!empty($voucher)) ? $voucher->name : ''; ?>" class="height100 img-responsive">
                                 </a>
                                 </div>
                                 <div class="p0 background-white col-sm-6 col-lg-4 col-xs-4 res-min-height-170 res-mt10">
                                 <a class="lightbox" href="<?php echo (!empty($voucher->image_3)) ? LARAVEL_IMAGE_PATH.$voucher->image_3 : $default_coupon_image; ?>">
-                                <img src="<?php echo (!empty($voucher->image_3)) ? LARAVEL_IMAGE_PATH . $voucher->image_3 : $default_coupon_image; ?>" alt="<?php echo (!empty($voucher)) ? $voucher->name :''; ?>" class="height100 img-responsive">
+                                    <img src="<?php echo (!empty($voucher->image_3)) ? LARAVEL_IMAGE_PATH . $voucher->image_3 : $default_coupon_image; ?>" alt="<?php echo (!empty($voucher)) ? $voucher->name :''; ?>" class="height100 img-responsive">
                                 </a>
                                 </div>
                             </div>
@@ -88,21 +90,60 @@
         </div>
         <div>
     <div class="row">
-            <div class="col-xs-12 ">
+            <div class="col-xs-12">
+                <?php if ($count_coupons > 0) {?>
                 <div class="col-md-6 col-xs-12">
                     <div class="card m0">
                         <div class="card-content">
                             <div class="full-width mtb20">
-                                <span>Valid :</span><ul class="nav voucher-valid-days">
-                                        <li class="img-circle" title="Available">S</li>
-                                        <li class="img-circle" title="Available">M</li>
-                                        <li class="img-circle" title="Available">T</li>
-                                        <li class="img-circle" title="Available">W</li>
-                                        <li class="img-circle" title="Available">T</li>
-                                        <li class="img-circle background-grey" title="Not Available">F</li>
-                                        <li class="img-circle background-grey" title="Not Available">S</li>
+                            <span>Valid :</span>
+                    <?php if(isset($valid_on_days) && !empty($valid_on_days)) { ?>
+                                <ul class="nav voucher-valid-days">
+                    <?php if($valid_on_days['valid_type'] == 0 ) {
+                                $expect = array('open_from', 'open_to', 'valid_type');
+                                foreach ($valid_on_days as $x  => $x_value) { 
+                                    if(!in_array($x ,$expect)) : ?>
+                                        <li class="img-circle text-capitalize" title="<?php echo $x;?>">
+                                            <?php echo substr($x,0,1); ?>
+                                        </li>
+                                    <?php  endif; ?>
+                                <?php } 
+                            }
+                            elseif($valid_on_days['valid_type'] == 1 ) {
+                            $expect = array('open_from', 'open_to', 'valid_type');
+                            $weekend = array('sun', 'sat');
+                            foreach ($valid_on_days as $x  => $x_value) { ?>
+                               <?php if(!in_array($x ,$expect)) : ?>
+                                <li class="img-circle text-capitalize <?php echo in_array($x ,$weekend) ? '':'not-active';?>" title="<?php echo $x.in_array($x ,$weekend) ;?>">
+                                    <?php echo substr($x,0,1); ?>
+                                </li>
+                               <?php  endif; ?>
+                                    <?php   ?>
+                             <?php } 
+                            }
+                            elseif($valid_on_days['valid_type'] == 2 ) {
+                            $expect = array('open_from', 'open_to', 'valid_type');
+                             $weekend = array('sun', 'sat');
+                            foreach ($valid_on_days as $x  => $x_value) { 
+                                if(!in_array($x ,$expect)) : ?>
+                                    <li class="img-circle text-capitalize <?php echo !in_array($x ,$weekend) ? '':'not-active';?>" title="<?php echo $x;?>">
+                                        <?php echo substr($x,0,1); ?>
+                                    </li>
+                            <?php  endif; ?>
+                            <?php } } elseif($valid_on_days['valid_type'] == 3 ) {
+                            $expect = array('open_from', 'open_to', 'valid_type');
+                            foreach ($valid_on_days as $x  => $x_value) { 
+                                    if(!in_array($x ,$expect)) : ?>
+                                        <li class="img-circle text-capitalize <?php echo($x_value!=1)?'not-active':'';?>" title="<?php echo $x;?>">
+                                        <?php echo substr($x,0,1); ?>
+                                        </li>
+                                    <?php endif; ?>
+                                <?php } }  ?>
+                <?php } else { ?>
+                            <span>Not defined yet.</span>
+                    <?php } ?>
                                 </ul>
-                                <span class="mlr10">Timings - <b><?php echo !empty($voucher->valid_from) ? date("H:m a", strtotime($voucher->valid_from)) : '0'; ?></b> to <b><?php echo !empty($voucher->valid_to) ? date("H:m a", strtotime($voucher->valid_to)) : '0'; ?></b></span>
+                            <span class="mlr10">Timings - <b><?php echo !empty($valid_on_days['open_from']) ? date("H:m a", strtotime($valid_on_days['open_from'])) : '0'; ?></b> to <b><?php echo !empty($valid_on_days['open_to']) ? date("H:m a", strtotime($valid_on_days['open_to'])) : '0'; ?></b></span>
                             </div>
                         </div>
                     </div>
@@ -113,7 +154,6 @@
                             <div class="row">
                                 <div class="col-md-5 col-xs-6 mtb10">
                                     <div class="qty-container">
-                                        <?php if ($count_coupons > 0) {?>
                                         <?php if ($this->aauth->is_loggedin()){ echo form_open(BASEURL.'cart/add'); } ?>
                                             <span class="no-of-persons"> Quantity :  
                                             </span>
@@ -128,9 +168,6 @@
                                                 ?>" readonly="">
                                             <button class="inc no-background no-border" type="button"><i class="hp-icons icon">add_circle</i></button>
                                             <input type="hidden" name="id" value="<?php echo (!empty($voucher->id)) ? $voucher->id : ''; ?>"/>
-                                               <?php } else {?>
-                                             <span class="no-of-persons"><img alt='Not avalible' src="<?php echo IMGURL.'/coupons/not-avalible.png' ?>" />&nbsp;  Coupon is not available </span>
-                                        <?php }?>
                                     </div>
                                 </div>
                                 <div class="col-md-4 col-xs-6 mtb10">
@@ -165,78 +202,99 @@
                         <?php echo form_close(); ?>
                     </div>
                 </div>
+                <?php } else { ?>
+                    <div class="col-xs-12 p0">
+                        <div class="col-xs-12">
+                            <div class="card m0 coupon-not-available  text-center">
+                                <div class="card-content ptb30">
+                                    <ul class="nav lp1">
+                                        <li>
+                                            <p>Sorry, coupon is not available</p>
+                                        </li>
+                                        <li>
+                                            <i class="hp-icons theme-purple-color">sentiment_dissatisfied</i>
+                                        </li>
+                                        <li>
+                                            <p>please come back later</p>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <?php } ?>
             </div>
-        </div>
-
+    </div>
         <div class="col-md-12"> 
             <div class="card">
                 <div class="card-content p0">
-                <div class="tab-content m0">
-<div class="tab-pane active" id="info">
-    <ul class="nav nav-pills nav-pills-purple border-bottom-color m0">
-        <li class="active">
-            <a href="#basic1" class="active no-border-radius" data-toggle="tab" aria-expanded="false"><b class="text-uppercase">DESCRIPTION</b></a>
-        </li>
-        <li class="">
-            <a href="#basic2" class="no-border-radius" data-toggle="tab" aria-expanded="true"><b class="text-uppercase">How to use</b></a>
-        </li>
-        <li >
-            <a href="#basic3" class="no-border-radius" data-toggle="tab" aria-expanded="true"><b class="text-uppercase">Terms & Conditions</b></a>
-        </li>
-        <li>
-            <a href="#basic4" class="no-border-radius" data-toggle="tab" aria-expanded="true"><b class="text-uppercase">Cancellation Policy</b></a>
-        </li><li>
-            <a href="#basic5" class="no-border-radius" data-toggle="tab" aria-expanded="true"><b class="text-uppercase">Things to Remember</b></a>
-        </li>
-    </ul>
-    <div class="tab-content">
-        <!--Description-->
-        <div class="tab-pane active" id="basic1">
-            <div class="card-content">
-                <p><?php echo (!empty($voucher->description)) ?  $voucher->description: '';   ?></p>
-            </div>
-        </div>
-        <!--Description-->
+                    <div class="tab-content m0">
+                        <div class="tab-pane active" id="info">
+                        <ul class="nav nav-pills nav-pills-purple border-bottom-color m0">
+                            <li class="active">
+                                <a href="#basic1" class="active no-border-radius" data-toggle="tab" aria-expanded="false"><b class="text-uppercase">DESCRIPTION</b></a>
+                            </li>
+                            <li class="">
+                                <a href="#basic2" class="no-border-radius" data-toggle="tab" aria-expanded="true"><b class="text-uppercase">How to use</b></a>
+                            </li>
+                            <li >
+                                <a href="#basic3" class="no-border-radius" data-toggle="tab" aria-expanded="true"><b class="text-uppercase">Terms & Conditions</b></a>
+                            </li>
+                            <li>
+                                <a href="#basic4" class="no-border-radius" data-toggle="tab" aria-expanded="true"><b class="text-uppercase">Cancellation Policy</b></a>
+                            </li><li>
+                                <a href="#basic5" class="no-border-radius" data-toggle="tab" aria-expanded="true"><b class="text-uppercase">Things to Remember</b></a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                        <!--Description-->
+                        <div class="tab-pane active" id="basic1">
+                            <div class="card-content">
+                                <p><?php echo (!empty($voucher->description)) ?  $voucher->description: '';   ?></p>
+                            </div>
+                        </div>
+                        <!--Description-->
 
-        <!-- How to use details-->
-        <div class="tab-pane" id="basic2">
-            <div class="card-content">
-               <div> 
-                   <li>Easy and quick to implement natively in Shopify or using apps.</li>
-                   <li>Easy to track with our new Discounts Report.</li>
-                   <li>Increased customer acquisition.</li>
-                   <li>Increased conversions.</li>
-                   <li>Increased customer loyalty.</li>
-               </div> 
-            </div>
-        </div>
-        <!-- How to use details-->
+                        <!-- How to use details-->
+                        <div class="tab-pane" id="basic2">
+                            <div class="card-content">
+                               <div> 
+                                   <li>Easy and quick to implement natively in Shopify or using apps.</li>
+                                   <li>Easy to track with our new Discounts Report.</li>
+                                   <li>Increased customer acquisition.</li>
+                                   <li>Increased conversions.</li>
+                                   <li>Increased customer loyalty.</li>
+                               </div> 
+                            </div>
+                        </div>
+                        <!-- How to use details-->
 
-        <!-- Terms and condition details-->
-        <div class="tab-pane" id="basic3">
-            <div class="card-content">
-                <?php echo (!empty($voucher->terms)) ? strip_tags($voucher->terms,"<li>") : "No found."; ?>
+                        <!-- Terms and condition details-->
+                        <div class="tab-pane" id="basic3">
+                            <div class="card-content">
+                                <?php echo (!empty($voucher->terms)) ? strip_tags($voucher->terms,"<li>") : "No found."; ?>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="basic4">
+                            <div class="card-content">
+                                <?php echo (!empty($voucher->cancellation_policy)) ? strip_tags($voucher->cancellation_policy,"<li>") : "No found."; ?>
+                            </div>
+                        </div>
+                        <!-- Terms and condition details-->
+                        <!-- things to remember details-->
+                        <div class="tab-pane" id="basic5">
+                            <div class="card-content">
+                                <?php echo (!empty($voucher->things_to_remember)) ? strip_tags($voucher->things_to_remember,"<li>") : "No found."; ?>
+                            </div>
+                        </div>
+                        <!-- things to remember details-->
+                        </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="tab-pane" id="basic4">
-            <div class="card-content">
-                <?php echo (!empty($voucher->cancellation_policy)) ? strip_tags($voucher->cancellation_policy,"<li>") : "No found."; ?>
-            </div>
-        </div>
-        <!-- Terms and condition details-->
-        <!-- things to remember details-->
-        <div class="tab-pane" id="basic5">
-            <div class="card-content">
-                <?php echo (!empty($voucher->things_to_remember)) ? strip_tags($voucher->things_to_remember,"<li>") : "No found."; ?>
-            </div>
-        </div>
-        <!-- things to remember details-->
-    </div>
-</div>
-</div>
-</div>
-</div>
-</div>
+
 <?php /*<div class="col-md-2 cashback-saving hide ">
 <div class="card">
 <div class="card-content">

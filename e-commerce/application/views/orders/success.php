@@ -1,11 +1,11 @@
 <div class="container">
-    <div class="row" align="center">
+    <div class="row col-md-12" align="center">
         <div class="card">
             <div class="card-content">
                 <div class="col-sm-12 col-md-10 col-md-offset-1">
                 	<!-- <img src="product/hp/assets/img" alt="user-img" class="img-circle user-img"> -->
                 	<img style="height: 40px" src="<?php echo IMGURL; ?>/success.svg" alt="" class="hp-logo m-t-20 img-responsive">
-					<h5>Congratulations! Your order has been placed.</h5>	
+					<h6 class="font-14">Congratulations!your order has been placed!</h6>	
 					<div class="order-details">
 						<div class="order-info">
 

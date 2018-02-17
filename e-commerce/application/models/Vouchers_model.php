@@ -15,12 +15,6 @@ class Vouchers_model extends Front_Model {
 	}
 
 	public function get_vouchers($location_id, $limit = NULL, $lastID = NULL, $offset = NULL) {
-		// Location based.	
-		// if (!empty($location_id)) {
-		//  $this->db->where(array('valmp.location_id' => $location_id));
-		//    $this->db->join(VOUCHER_AVAILABLE_LOCATIONS_MAP_TABLE . ' as valmp', 'valmp.voucher_id = v.id', 'left');
-		// }
-		
 		$this->db->select('distinct(voucher.id), voucher.*,brand.name as brandname,brand.id as brandid,brand.logo as brandlogo');
 		// $this->db->select('distinct(voucher.id), voucher.is_new,voucher.is_featured,voucher.sort_order,voucher.is_hot');
 		$this->db->join(BRANDS_TABLE . ' as brand', 'brand.id = voucher.brand', 'left');
@@ -49,23 +43,32 @@ class Vouchers_model extends Front_Model {
 		else return false;
 	}
 
-	// function somename($query) {
-	// 	return array_map(function ($_) {
-	// 		return $_['id'];
-	// 	}, $query->result_array());
-	// }
 
 	public function searchby($keyword='')
 	{
 		$brandids = array();	
-		$this->db->select('distinct(voucher.id) , brand.id as brandid ,voucher.*');
-		$this->db->like('brand.name',$keyword);
-		$this->db->or_like('voucher.name',$keyword);
-		$this->db->or_where("brand.id  in (SELECT brand_id FROM ".BRANDS_REDEEM_LOCATIONS_TABLE." WHERE address LIKE '%".$keyword."%')");
-		$this->db->or_where("brand.category_id  in (SELECT id FROM ".CATEGORIES_TABLE." WHERE name LIKE '%".$keyword."%')");
+		$select = 'distinct(brand.id), brand.name as brandname, category.name as categoryname'; 
+		$search_exploded = explode (" ", $keyword); // for multiple words 
+		// for non ajax request. 
+		if (!$this->input->is_ajax_request()) {
+			$select = 'distinct(voucher.id),brand.name as brandname,voucher.*';
+			foreach($search_exploded as $char ) {
+			}
+		}
+		$this->db->select($select);
+		// for autocomplete
+		foreach($search_exploded as $char ) {
+			$this->db->like('brand.name', $char ,'right');
+			$this->db->or_like('voucher.name',$char,'right');
+			$this->db->or_like('category.name',$char,'right');
+			$this->db->or_where("brand.id  in (SELECT brand_id FROM " . BRANDS_REDEEM_LOCATIONS_TABLE . " WHERE address LIKE '%" . $char . "%')");
+		}
+
 		$this->db->join(BRANDS_TABLE . ' as brand', 'brand.id = voucher.brand','left');
+		$this->db->join(CATEGORIES_TABLE . ' as category', 'category.id = brand.category_id','left');
 		$category  = $this->db->get($this->table . ' as voucher');
-		
+		// echo query(0);      
+        // prx($category->result_array());
 		return $category->result_array();
 	}
 	
@@ -79,8 +82,6 @@ class Vouchers_model extends Front_Model {
 	public function get_voucher($vid) {
 		$query = $this->db->select('v.*,b.name as brandname,b.logo as brandlogo,b.id as brandid,b.description as branddescription,b.category_id as brandcategoryid')
 			->where('v.id =' . $vid)
-			// ->where("generateslug(v.name)='".$vname)
-//                ->where('( DATE(NOW())< v.valid_from or DATE(NOW()) > v.valid_from or v.valid_from is null) and (v.valid_to >= DATE(NOW()) )')
 			->join(BRANDS_TABLE . ' as b', 'b.id = v.brand', 'left')
 			->get($this->table . ' as v');
 			if ($query->num_rows() > 0) 

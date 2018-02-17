@@ -57,8 +57,9 @@
                         <ul class="menu_links m0 p0">
                             <li>
 	                            <div class="form-group label-floating">
-	                                <?php echo form_open(BASEURL.'vouchers/search'); ?>
-	                                    <input class="form-control valid text-white" placeholder="Search your perk here" name="name" type="text" required="required" aria-required="true">
+	                                <?php echo form_open(BASEURL.'vouchers/search',array('class'=>'search-form')); ?>
+	                                    <input class="form-control search-input-header text-white" placeholder="Search your perk here" name="name" type="text" required="required"  autocomplete="new-password" aria-required="true">
+                                        <span class="input-group-addon"><i class="fa fa-search"></i></span>
 	                                <?php echo form_close(); ?>
 	                            </div>
                             </li>

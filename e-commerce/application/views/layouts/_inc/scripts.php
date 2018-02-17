@@ -10,7 +10,6 @@
 <script src="<?php echo JSURL ?>/common.js"></script>
 
 <?php echo (isset($_scripts)) ? $_scripts : ""; ?>
-
 <!-- Location Picker start -->
 <div id="LocationPickerModal" class="modal fade hp-available-locations" role="dialog">
     <div class="modal-dialog">
@@ -43,7 +42,3 @@
 <!-- Location Picker  End -->
 <?php if(isset($googlemap) && !empty($googlemap)) 
 echo $googlemap; ?>
-
-<script type="text/javascript">
-
-</script>

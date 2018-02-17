@@ -1,0 +1,11 @@
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+class Vendor_model extends Front_Model {
+
+	
+
+}
+
+/* End of file vendor_mode.php */
+/* Location: ./application/models/vendor_mode.php */

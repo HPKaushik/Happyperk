@@ -7,44 +7,39 @@ $printed = array();
             <div class="col-md-12 col-xs-12">
                 <div class="full-width mtb20">
                     <?php if (isset($vouchers)) { ?>
-                    <h3>Search All Result (<?php echo count($vouchers); ?>)</h3>
+                    <h3>Search All Result (<?php echo count($vouchers); ?>) <?php echo (isset($name)) ? 'Keyword: '.$name: ''; ?></h3>
                     <?php  } ?>
                 </div>
             </div>
-            <div class="col-md-2 col-xs-12">
-                <?php echo form_open(base_url() . 'vouchers/search'); ?>
+            <div class="col-md-3 col-xs-12">
+                <div class="card">
+                    <div class="card-content">
+               
+                <?php /*echo form_open(base_url() . 'vouchers/search'); ?>
                     <h5>Search </h5><input type="text" name="name" required="true" aria-required="true" aria-invalid="false" class="form-control" value="<?php echo isset($search_keyword) ? $search_keyword : ''; ?>" placeholder="Search here.." >                   
-                    <?php echo form_close(); ?>
+                    <?php echo form_close(); */?>
                 <h5>Brands </h5>
-                <?php
-                $brandname = $this->brands_model->getResult('*', array('status' => '1'));
-                if (!empty($brandname)) {
-                    foreach ($brandname as $key => $bname) {
-                        ?>
-                        <label class="containerbox"><?php echo $bname->name; ?>
-                            <input type="checkbox" onclick="getbrandcheck(this.id);" class="brandcheckbox" id="<?php echo $bname->id; ?>" name="brand_name[]" value="<?php echo $bname->id; ?>">
-                            <span class="checkmark"></span>
-                        </label>
-                        <?php
-                    }
-                }
-                ?><br>
+                <?php $brandname = $this->brands_model->getResult('*', array('status' => '1'));
+                    if (!empty($brandname)) {
+                    foreach ($brandname as $key => $bname) { ?>
+                    <label class="containerbox"><?php echo $bname->name; ?>
+                    <input type="checkbox" onclick="getbrandcheck(this.id);" class="brandcheckbox" id="<?php echo $bname->id; ?>" name="brand_name[]" value="<?php echo $bname->id; ?>">
+                    <span class="checkmark"></span>
+                    </label>
+                        <?php } } ?><br>
                 <h5>Categories</h5>
-                <?php
-                $categories = $this->category_model->getResult('*', array('status' => '1'));
-                if (!empty($categories)) {
-                    foreach ($categories as $key => $category) {
-                        ?>
-                        <label class="containerbox"><?php echo $category->name; ?>
-                            <input type="checkbox" class="categorycheckbox" id="category_name" name="category_name[]" value="<?php echo $category->id; ?>">
-                            <span class="checkmark"></span>
-                        </label>
-                        <?php
-                    }
-                }
-                ?>
+                <?php $categories = $this->category_model->getResult('*', array('status' => '1'));
+                    if (!empty($categories)) {
+                    foreach ($categories as $key => $category) { ?>
+                    <label class="containerbox"><?php echo $category->name; ?>
+                        <input type="checkbox" class="categorycheckbox" id="category_name" name="category_name[]" value="<?php echo $category->id; ?>">
+                        <span class="checkmark"></span>
+                    </label>
+                <?php } }?>
             </div>
-            <div class="col-md-10 col-xs-12" >
+            </div>
+            </div>
+            <div class="col-md-9 col-xs-12" >
                 <div class="hp_grid mt20 col-sm-12" id="brand_vocher">
                     <?php
                     $c = 1;

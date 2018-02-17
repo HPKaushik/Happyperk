@@ -1,5 +1,6 @@
 <?php
-$otpsend = false;
+$otpsend = true; 
+/*
 $loggedUser = get_session_var('employeed_logged_in');
 if (!empty($loggedUser['phone'])) {
     $param = array('mobilenumber' => "91" . $loggedUser['phone']);
@@ -17,7 +18,7 @@ if (!empty($loggedUser['phone'])) {
                 echo "Sorry";
             }
         }
-    }
+    }*/ 
     ?>
     <div class="container">
         <div class="row col-md-12" align="center">

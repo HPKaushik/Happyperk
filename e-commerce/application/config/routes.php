@@ -97,6 +97,7 @@ $route['cart/review'] = "Front_Cart/review";
 $route['placeorder'] = "Front_Orders/placeorder";
 $route['cart/ordersuccess'] = "Front_Buy/order_success";
 $route['placerechargeorder'] = "Front_Buy/placerechargeorder";
+$route['order/invoice/(:num)'] = "Front_Orders/generated_invoice/$1";
 
 //Wallet.
 $route['user/wallet/verify'] = "Front_User/verifyWallet";

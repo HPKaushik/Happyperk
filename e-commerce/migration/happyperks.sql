@@ -4403,3 +4403,35 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+ALTER TABLE `hp_vouchers` ADD `is_featured` TINYINT NOT NULL DEFAULT '0' AFTER `sku`, ADD `sort_order` VARCHAR(50) NOT NULL DEFAULT '0' AFTER `is_featured`, ADD `is_new` TINYINT NOT NULL DEFAULT '0' AFTER `sort_order`, ADD `is_hot` TINYINT NOT NULL DEFAULT '0' AFTER `is_new`;
+    
+CREATE TABLE `hp_vendor_valid_days` (
+  `id` int(11) NOT NULL,
+  `vendor_id` int(11) NOT NULL,
+  `mon` tinyint(1) NOT NULL DEFAULT '0',
+  `tue` tinyint(1) NOT NULL DEFAULT '0',
+  `wed` tinyint(1) NOT NULL DEFAULT '0',
+  `thu` tinyint(1) NOT NULL DEFAULT '0',
+  `fri` tinyint(1) NOT NULL DEFAULT '0',
+  `sat` tinyint(1) NOT NULL DEFAULT '0',
+  `sun` tinyint(1) NOT NULL DEFAULT '0',
+  `open_from` text,
+  `open_to` text,
+  `valid_type` enum('0','1','2','3') NOT NULL COMMENT '0-all days 1-week days 2-week ends 3-custom'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+ALTER TABLE `hp_vendor_valid_days`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `vendor_id` (`vendor_id`);
+ALTER TABLE `hp_vendor_valid_days`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+ALTER TABLE `hp_vendor_valid_days`
+  ADD CONSTRAINT `fk_vendor_valid_id` FOREIGN KEY (`vendor_id`) REFERENCES `hp_vendors` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION;
+
+CREATE TABLE `hp_announcements_user_read_map` (
+  `id` int(11) NOT NULL,
+  `annoucement_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+

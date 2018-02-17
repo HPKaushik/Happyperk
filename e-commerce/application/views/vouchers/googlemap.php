@@ -85,28 +85,24 @@ background-color: #e4e4e4;
 
             // Loop through our array of markers & place each one on the map
             var i = 0;
-               <?php if (isset($voucher)) {
-               $brandsloc = $this->brands_redeem_location_model->getResult('*', array('brand_id' => $voucher->brandid));
-            foreach ($brandsloc as $inf) {
-            ?>
-                   // Multiple Markers
+            <?php if (isset($voucher) && isset($brandsloc)) {
+                foreach ($brandsloc as $inf) { ?>
+                // Multiple Markers
                 var markers = [
-                    ['<?php echo $inf->address; ?>', <?php echo $inf->latitude; ?>, <?php echo $inf->longitude; ?>]
-                ];
+                   ['<?php echo $inf->address; ?>', <?php echo $inf->latitude; ?>, <?php echo $inf->longitude; ?>]];
                 var position = new google.maps.LatLng(<?php echo $inf->latitude; ?>, <?php echo $inf->longitude; ?>);
                 bounds.extend(position);
                 
                 marker = new google.maps.Marker({
-                position: position,
-                map: map,
-                title: '<?php echo $inf->address; ?>'
+                    position: position,
+                    map: map,
+                    title: '<?php echo $inf->address; ?>'
                 }); 
 
 
                 // Allow each marker to have an info window
                 google.maps.event.addListener(marker, 'click', (function (marker, i) {
-                    return function () {
-                    }
+                    return function () {}
                 })(marker, i)); 
 
                 // Automatically center the map fitting all markers on the screen
@@ -152,7 +148,6 @@ background-color: #e4e4e4;
         $(window).load(function () {
             // Animate loader off screen
             $("#loading_page").fadeOut("slow");
-            ;
         });
 </script>
 <?php  } ?>

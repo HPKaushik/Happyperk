@@ -33,13 +33,11 @@
                     <a class="pull-right" href="<?php echo base_url('user/profile') ?>#announcement"><p>Read all here.</p> </a>
                 <?php }?>
             </div>
-
         </div>
-<?php }?>
+<?php } ?>
 <?php endif;?>
 </div>
-<div class="row m0">
-         <!-- <div class="col-sm-1" ></div> -->
+<div class="row m0 hide"><!-- <div class="col-sm-1" ></div> -->
     <div class="col-sm-12">
             <div class="card">
                 <div class="col-sm-3">
@@ -74,7 +72,39 @@
 </div>
     <div class="footer-container">
         <div class="footer">
-            <div class="footer-top ptb15">
+            <div class="footer-initial">
+                <div class="container">
+                    <div class="row m0">
+    <div class="col-sm-12">
+            <div class="card">
+                <div class="col-sm-3">
+                    <div class="card-header p0">
+                       <p class="text-center "><img src="<?php echo IMGURL; ?>/best-price.png"></p>
+                       <h5 class="text-center">Best Price</h5>
+                       <p class="text-center m0">appiness is guaranteed at Paytm. If we fall short of your expectations, give us a shout.</p>
+                    </div>
+                </div><div class="col-sm-3">
+                    <div class="card-header p0">                       <p class="text-center "><img src="<?php echo IMGURL; ?>/secure-payment.png"></p>
+                       <h5 class="text-center">Secure Payment</h5>
+                       <p class="text-center m0">appiness is guaranteed at Paytm. If we fall short of your expectations, give us a shout.</p>
+                    </div>
+                </div><div class="col-sm-3">
+                    <div class="card-header p0">                       <p class="text-center "><img src="<?php echo IMGURL; ?>/freedom-to-choose.png"></p>
+                       <h5 class="text-center">Freedom to choose</h5>
+                       <p class="text-center m0">appiness is guaranteed at Paytm. If we fall short of your expectations, give us a shout.</p>
+                    </div>
+                </div><div class="col-sm-3">
+                    <div class="card-header p0">                       <p class="text-center"><img src="<?php echo IMGURL; ?>/our-promise.png"></p>
+                       <h5 class="text-center">Our Promise</h5>
+                       <p class="text-center m0">Happiness is guaranteed at Paytm. If we fall short of your expectations, give us a shout.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+            <div class="footer-top ptb15 hide">
                 <div class="container">
                     <div class="row">
                         <div class="col-sm-12">
@@ -90,7 +120,7 @@
                     </div>
                 </div>
             </div>
-            <div class="footer-middle ptb15 hide">
+            <div class="border-gery-top footer-middle ptb15">
                 <div class="container">
                     <div class="row">
                         <div class="col-sm-12">

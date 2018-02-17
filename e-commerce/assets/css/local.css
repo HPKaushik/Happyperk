@@ -86,7 +86,7 @@ body.index .header{
     padding: 0px 0px 50px;
 }
 .hp-coupon-item { 
-    width:30%;
+    width:31%;
     float: left;
     -webkit-box-shadow: 0 3px 5px 0 rgba(0,1,1,.1);
     box-shadow: 0 3px 5px 0 rgba(0,1,1,.1);
@@ -118,6 +118,17 @@ body.index .header{
 }
 .coupon-image a img{
     max-height: 250px;
+}
+.coupon-not-available ul li {
+    display: inline-block;
+    font-size: 20px;
+    vertical-align: text-bottom;
+}
+.coupon-not-available ul li i {
+    font-size: 50px;
+}
+.coupon-not-available ul li:nth-child(2) {
+    padding: 0 20px;
 }
 .coupon-container .coupon-details-btm
 {
@@ -280,14 +291,16 @@ body.index .header{
 .coupon-popup-wrapper .float-vendor-icon {
     top: 0;
     left: 35px;
+    box-shadow: 0px 2px 7px #777;
 }
 .hp-coupon-popup .stars, .stars-icon {
     width: 90px;
     margin: 7px auto;
     height: 15px;
     display: block;
-    background: url(/assets/img/sprites.png);
-    background-position: -28px -31px;
+    background: url('images/sprites.png');
+    /*background-position: -28px -31px;*/
+    background-size: cover;
 }
 .stars-icon {
     display: inline-grid;
@@ -367,7 +380,7 @@ body.index .header{
 }
 .header-container {
     text-align: center;
-    padding: 25px 15px;
+    padding: 8px 15px;
 }
 .hp-logo-container, .info-links {
     margin: 0 20px 0 0;
@@ -387,7 +400,7 @@ body.index .header{
     display: block;
     text-transform: uppercase;
     /*font-size: 11px;*/
-    padding: 9px 14px;
+    padding: 9px 10px;
 }
 .info-links .menu_links li a:hover { text-decoration: none; }
 .info-links .menu_links li a .icon
@@ -483,18 +496,53 @@ body.index .header{
 .img-circle{
     border: 1px solid #eee;
     padding: 5px;
+    border-radius: 50%;
+    overflow: hidden;
+    /*padding: 2px;*/
+    /*border-radius: 50%;*/
+    /*max-width: 50px;*/
+    /*width: 150px;*/
+    /*height: 150px;*/
+}
+.img-circle img{ 
+    border-radius: 50%;
+    display: block;
+    max-width: 55px;
+    min-height: 55px;
 }
 .voucher-valid-days li ,.voucher-valid-days{
     display: inline-block;
 }
 .voucher-valid-days li {
-    background: #ABE2F6;
-    color: #fff;
+    background: #ffffff;
+    color: #000;
     padding: 4px 6px;
     width: 24px;
+    height: 24px;
+    margin: 0 3px;
     text-align: center;
-    font-size: 10px;
+    font-size: 11px;
+    overflow: inherit;
+    border: 1px solid #e1e1e1;
 }
+.voucher-valid-days li:not(.not-active):before
+ {
+    position: absolute;
+    width: 12px;
+    font-family: 'Hp Icons';
+    height: 12px;
+    left: 15px;
+    content: '\e876';
+    background: #58c55c;
+    font-size: 0.7em;
+    color: #fff;
+    top: 16px;
+    border-radius: 50%;
+ }
+ .voucher-valid-days li.not-active   
+ {
+  background: #e1e1e1;
+ }
 .qty-container button {
     padding: 2px;
     cursor: pointer;
@@ -1271,6 +1319,14 @@ input[type=number]::-webkit-outer-spin-button {
 .mt20{
     margin:20px 0 0 0;
 }
+.redeem-sort-one {
+    display: -webkit-box;
+    line-height: 1.4;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 .plrt15-50{
     padding:  15px 50px !important;
 }
@@ -1376,7 +1432,7 @@ input[type=number]::-webkit-outer-spin-button {
     /*border-right: 3px solid #329fd6;*/
 }
 .nav-pills-purple.border-bottom-color li.active {
-    /*border-bottom: 3px solid #329fd6;*/
+    border-bottom: 3px solid #329fd6;
 }
 /*
 .nav-pills.nav-pills-danger>li.active>a,
@@ -1598,7 +1654,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 .footer-bottom, .footer-middle
 {
-    background: #f4f4f4;
+    background: #ffffff;
 }
 .border-gery-top{
     border-top:1px solid #d8d8d8;
@@ -1679,6 +1735,11 @@ input[type=number]::-webkit-outer-spin-button {
     left: 0;
     z-index: 1;
     box-shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.42), 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
+}
+
+.ptbs15 {
+    padding-top: 15px;
+    padding-bottom: 15px;
 }
 
 .sidebar .sidebar-wrapper {
@@ -2008,7 +2069,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 .text-middle-line {
     display: block;
-    text-align: center;
+    /*text-align: center;*/
     overflow: hidden;
     white-space: nowrap;
 }
@@ -2016,6 +2077,7 @@ input[type=number]::-webkit-outer-spin-button {
 .text-middle-line span {
     position: relative;
     display: inline-block;
+    left: 2px;
 }
 .text-middle-line span:before, .text-middle-line span:after {
     content: "";
@@ -2051,8 +2113,8 @@ input[type=number]::-webkit-outer-spin-button {
 }
 .background-grey{
     /*background: #fafafa;*/
-    background: #fafafa !important;
-    color: #6f6f6f !important;
+    background: grey !important;
+    color: #fafafa !important;
 }
 .text-orange{
     color: #e6a500;
@@ -2083,7 +2145,12 @@ input[type=number]::-webkit-outer-spin-button {
 .height100{
     height: 100%;
 }
-/* login */
+.height100px{
+    height: 100px;
+}
+.height85px{
+    height: 85px;
+}
 .sign-in-button
 {
     background: #fff;
@@ -2200,10 +2267,10 @@ input[type=number]::-webkit-outer-spin-button {
     .sidebar{
         display: none;
     }
-    .res-max-height-315{
-        max-height: 315px;
+    .res-max-height-285{
+        max-height: 285px;
         overflow: hidden;
-        /*min-height: 315px;*/
+        /*min-height: 285px;*/
     }
     .res-min-height-170{
         min-height: 160px
@@ -2212,8 +2279,8 @@ input[type=number]::-webkit-outer-spin-button {
         max-height: 160px;
         overflow: hidden;
     }
-    .res-min-height-315 {
-         min-height: 315px
+    .res-min-height-285 {
+         min-height: 285px
     }
 
 }
@@ -2553,17 +2620,80 @@ background:white;
 .cashback-amount { color: #58c55c } 
 .save-amount { color: #673bb7 } 
 .saving-title, .cashback-title { font-size: larger; }
-.header-block-right.pull-right input.form-control.valid.text-white {
-    width: 350px;
-}
-.hp-coupon-item-details .coupon-image span {
-    position: absolute;
-    top: 12px;
+/*.hp-coupon-item-details .coupon-image span {    position: absolute;top: 12px;
     background: #ccc0e3;
     width: auto;
     padding: 0px 6px;
     color: #673bb7;
-} 
+} */
 .justify {
     text-align: justify;
+}
+/*.search-input-header {width: 350px;}*/
+.search-input-header{ 
+        /*padding: .5em 1em;*/ 
+        /*width: 100%;*/
+}
+
+.mb30{ margin-bottom: 30px !important; }
+
+.search-input-header {
+    margin-right : 80px;
+    display: inline-table;
+}
+.search-form span.input-group-addon{
+    border-radius: 4px;
+    border: 0px;
+    background-color: transparent;
+    float: right;
+    margin-top: -30px;
+    margin-right: 10px;
+    color: white;
+}
+.search-input-header::placeholder{ /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: white !important;
+    opacity: 1;
+}
+.last_div .loader img {
+    display: block;margin: auto;width: 5%;
+}
+
+.voucher-tags {
+    position: absolute;
+    top: 0;
+    background: #ffffff;
+    width: auto;
+    padding: 2px 9px;
+    color: #673bb7;
+    font-weight: 600;
+    text-transform: lowercase;
+}
+.ui-menu {
+        list-style:none;
+        padding: 10px;
+        margin: 0;
+        display:block;
+        width:227px;
+}
+.ui-menu .ui-menu {
+        margin-top: -3px;
+}
+.ui-menu .ui-menu-item {
+        margin:0;
+        padding: 0;
+
+        /*width: 200px;*/
+}
+.ui-menu .ui-menu-item a {
+        text-decoration:none;
+        display:block;
+        padding:.2em .4em;
+        line-height:1.5;
+        zoom:1;
+}
+.ui-menu .ui-menu-item a.ui-state-hover,
+.ui-menu .ui-menu-item a.ui-state-active {
+        margin: -1px;
+        background: #673bb7 !important;
+        border: 0px  !important;
 }

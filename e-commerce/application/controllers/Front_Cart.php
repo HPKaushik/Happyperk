@@ -15,7 +15,6 @@ class Front_Cart extends Front_Controller {
 	}
 
 	public function index() {
-		// $thiscashback = 0;
 		if ($this->cart->contents() != '') {
 			foreach ($this->cart->contents() as $item) {
 				$cb_amount = isset($item['cashback_amount']) && $item['cashback_amount'] > 0 ? $item['cashback_amount'] : 0;

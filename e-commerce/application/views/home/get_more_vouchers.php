@@ -17,7 +17,7 @@ if (isset($morevouchers) && !empty($morevouchers)) {
                                 <img src="<?php echo IMGURL?>/coupons/1.jpg" class="" alt="<?php echo $voc->name; ?>" />
                             <?php }?>
                         </a>
-                        <span class="text-uppercase"><?php echo (($voc->is_new == 1) ? "New" : ( ($voc->is_hot == 1) ? "Hot" : (($voc->is_featured == 1) ? "Featured" : '')));?></span>
+                       <div class="font-14 voucher-tags"> <span class=""><?php echo (($voc->is_new == 1) ? "New" : ( ($voc->is_hot == 1) ? "Hot" : (($voc->is_featured == 1) ? "Featured" : '')));?></span></div>
                     </div>
                     <div class="coupon-details-btm">
                         <div class="coupon-title-wrapper col-sm-7 no-padding">

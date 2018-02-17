@@ -111,3 +111,5 @@ define('ORDER_VOUCHERS_MAP_TABLE', 'hp_order_voucher_coupon_map');
 define('ORDER_RECHARGE_TABLE', 'hp_order_recharge');
 define('CONTACT_TABLE', 'hp_contact_us');
 define('SLIDER_TABLE', 'hp_slider_banners');
+define('VENDORS_TABLE', 'hp_vendors');
+define('VENDOR_VALID_DAYS', 'hp_vendor_valid_days');

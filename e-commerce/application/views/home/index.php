@@ -3,6 +3,7 @@
 <div class="content">
     <div class="container">
         <?php include 'recharge.php'; // contails code related to recharge. ?>
+        <div class="row">
         <div class="hp_grid mt20 col-sm-12">
             <?php
             $itemID = '';
@@ -25,7 +26,7 @@
                                     <img src="<?php echo IMGURL; ?>/coupons/1.jpg" class="" alt="<?php echo $voc->name; ?>" />
                                     <?php } ?>
                                 </a>
-                                <span class="text-uppercase"><?php echo (($voc->is_new == 1) ? "New" : ( ($voc->is_hot == 1) ? "Hot" : (($voc->is_featured == 1) ? "Featured" : '')));?></span>
+                                <div class="font-14 voucher-tags"> <span class=""><?php echo (($voc->is_new == 1) ? "New" : ( ($voc->is_hot == 1) ? "Hot" : (($voc->is_featured == 1) ? "Featured" : '')));?></span></div>
                             </div>
                             <div class="coupon-details-btm">
                                 <div class="coupon-title-wrapper col-sm-7 no-padding">
@@ -144,13 +145,14 @@
                             <b><span> No items found.</span></b>
                             <?php } ?>
         </div>
+        </div>
     </div>
 </div>
 <?php if (isset($vouchers) && !empty($vouchers) && count($vouchers) > 0) { ?>
 <div class="row m0 last_div">
     <div class="col-sm-12">
         <div data-lastid="<?php echo $itemID; ?>" class="loader" data-offset="5" data-limit="5" data-is_last="0" data-awardoffset="1" style="display: none;">
-            <img style="display: block;margin: auto;width: 5%;" src="<?php echo IMGURL ?>/loader.gif" />
+            <img src="<?php echo IMGURL ?>/loader.gif" />
         </div>
     </div>
 </div>
